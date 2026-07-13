@@ -10,8 +10,35 @@
 <body>
 <x-dc>
 <helmet>
-  <title>Cwenar Construction — General Contractor · New Hope, PA</title>
-  <meta name="description" content="Ground-up builds, whole-home renovations, and the kitchens, baths, and repairs in between. Building in Bucks County and the tri-state since 1995.">
+  <title>Cwenar Construction — General Contractor in New Hope & Bucks County, PA</title>
+  <meta name="description" content="Cwenar Construction is a general contractor in New Hope, PA — ground-up builds, whole-home renovations, and the kitchens, baths, and repairs in between. Serving Bucks County and the tri-state since 1995.">
+  <link rel="canonical" href="https://cwenargc.com/">
+  <meta property="og:title" content="Cwenar Construction — General Contractor · New Hope, PA">
+  <meta property="og:description" content="Custom builds, whole-home renovations, and repairs across Bucks County. Since 1995.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cwenargc.com/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": "Cwenar Construction",
+    "url": "https://cwenargc.com",
+    "telephone": "+1-215-500-6311",
+    "foundingDate": "1995",
+    "address": { "@type": "PostalAddress", "addressLocality": "New Hope", "addressRegion": "PA", "postalCode": "18938", "addressCountry": "US" },
+    "areaServed": [
+      { "@type": "Place", "name": "New Hope, PA" },
+      { "@type": "Place", "name": "Solebury, PA" },
+      { "@type": "Place", "name": "Buckingham, PA" },
+      { "@type": "Place", "name": "Upper Makefield, PA" },
+      { "@type": "Place", "name": "Doylestown, PA" },
+      { "@type": "Place", "name": "Bucks County, PA" },
+      { "@type": "Place", "name": "Lambertville, NJ" }
+    ],
+    "description": "General contractor in New Hope, Pennsylvania. Ground-up custom builds, whole-home renovations, kitchens, baths, and repairs across Bucks County and the tri-state since 1995.",
+    "knowsAbout": ["custom home construction", "whole-home renovation", "kitchen remodeling", "bathroom remodeling", "structural repairs"]
+  }
+  </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='12 18 76 64'%3E%3Cpath d='M32 20 H68 L69 34 H86 L76 80 H24 L14 34 H31 Z' fill='%23A9873F'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
@@ -50,9 +77,10 @@
       [data-mq="who-side"] { display: none !important; }
       [data-mq="who-head"] { font-size: 28px !important; line-height: 1.26 !important; }
       #who [data-reveal] > div:nth-child(4) { padding: 26px 2px 24px !important; gap: 15px !important; }
+      #who [data-reveal] > div:nth-child(2) { justify-content: center !important; }
       [data-mq="who-deck"] > div:first-child, [data-mq="who-deck"] > div:last-child { display: none !important; }
       [data-mq="who-deck"] { justify-content: center !important; }
-      [data-mq="who-deck"] > div:nth-child(2) { font-size: 15px !important; max-width: none !important; }
+      [data-mq="who-deck"] > div:nth-child(2) { font-size: 15px !important; max-width: 100% !important; flex: 0 1 auto !important; min-width: 0 !important; }
       #work { padding: 38px 20px 46px !important; }
       #work > div > [data-reveal]:first-child, #ideas > div > [data-reveal]:first-child { gap: 12px !important; }
       /* what-we-build: pill tabs + panel */
@@ -66,9 +94,10 @@
       [data-mq="work-tabs"] > button > div:nth-child(2) { display: none !important; }
       /* starting points */
       #ideas { padding: 44px 20px 52px !important; }
-      [data-mq="idea-row"] { grid-template-columns: 1fr 26px !important; gap: 3px 12px !important; padding: 18px 4px !important; align-items: center !important; }
-      [data-mq="idea-row"] > div:first-child { grid-column: 1 / -1; }
-      [data-mq="idea-row"] > div:nth-child(2) { font-size: 20px !important; line-height: 1.3 !important; }
+      [data-mq="idea-row"] { grid-template-columns: 38px 1fr 26px !important; gap: 14px !important; padding: 19px 4px !important; align-items: center !important; }
+      [data-mq="idea-num"] { display: block !important; }
+      [data-mq="idea-row"] > div:nth-child(2) { display: none !important; }
+      [data-mq="idea-row"] > div:nth-child(3) { font-size: 19px !important; line-height: 1.3 !important; }
       [data-mq="idea-detail"] { padding: 0 0 28px !important; }
       [data-mq="idea-card"] { padding: 20px 16px 16px !important; gap: 18px !important; }
       [data-mq="idea-grid"] { grid-template-columns: 1fr !important; gap: 20px !important; }
@@ -499,6 +528,7 @@
       <sc-for list="{{ ideas }}" as="idea" hint-placeholder-count="4">
         <div style="border-bottom:1px solid rgba(247,244,238,.16);">
           <button type="button" data-mq="idea-row" onClick="{{ idea.toggle }}" style="font-family:'Archivo', sans-serif; display:grid; grid-template-columns:110px 1fr 44px; gap:24px; align-items:baseline; width:100%; text-align:left; padding:30px 14px; background:{{ idea.bg }}; border:none; cursor:pointer; transition:background .25s ease;" style-hover="background:rgba(247,244,238,.055);">
+            <div data-mq="idea-num" style="display:none; font-family:'Libre Caslon Display', serif; font-size:22px; line-height:1; color:#C4A055;">{{ idea.num }}</div>
             <div style="font-size:10px; font-weight:700; letter-spacing:.22em; color:{{ idea.tagColor }};">{{ idea.tag }}</div>
             <div style="font-family:'Libre Caslon Display', serif; font-size:30px; line-height:1.25; color:#F7F4EE;">{{ idea.title }}</div>
             <div style="font-family:'Libre Caslon Display', serif; font-size:24px; line-height:1; color:#C4A055; text-align:center; align-self:center; transform:{{ idea.markRot }}; transition:transform .45s cubic-bezier(.2,.6,.2,1);">+</div>
@@ -946,6 +976,7 @@ class Component extends DCLogic {
         c3: 'Rough-ins happen once \u2014 walls close up once.' }
     ];
     const ideas = ideaList.map((d, i) => ({
+      num: '0' + (i + 1),
       tag: d.tag, tagColor: d.tagColor, title: d.title,
       body: d.body, c1: d.c1, c2: d.c2, c3: d.c3,
       gridRows: this.state.openIdea === i ? '1fr' : '0fr',
