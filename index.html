@@ -46,19 +46,22 @@
       [data-mq="hero-cta"] > a { flex: 1 1 0; text-align: center; padding: 16px 6px !important; font-size: 11px !important; letter-spacing: .1em !important; white-space: nowrap; }
       /* type + sections */
       h2 { font-size: 32px !important; }
-      #who { padding: 36px 20px 20px !important; }
+      #who { padding: 34px 20px 22px !important; }
       [data-mq="who-side"] { display: none !important; }
-      [data-mq="who-head"] { font-size: 31px !important; }
+      [data-mq="who-head"] { font-size: 28px !important; line-height: 1.26 !important; }
+      #who [data-reveal] > div:nth-child(4) { padding: 26px 2px 24px !important; gap: 15px !important; }
+      [data-mq="who-deck"] > div:first-child, [data-mq="who-deck"] > div:last-child { display: none !important; }
+      [data-mq="who-deck"] { justify-content: center !important; }
+      [data-mq="who-deck"] > div:nth-child(2) { font-size: 15px !important; max-width: none !important; }
       #work { padding: 38px 20px 46px !important; }
       #work > div > [data-reveal]:first-child, #ideas > div > [data-reveal]:first-child { gap: 12px !important; }
       /* what-we-build: pill tabs + panel */
       #work-grid { display: flex !important; flex-direction: column !important; gap: 16px !important; }
       #work-grid > div:nth-child(2) { min-height: 0 !important; }
-      [data-mq="work-tabs"] { flex-direction: row !important; gap: 8px !important; overflow-x: auto; padding: 2px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-      [data-mq="work-tabs"]::-webkit-scrollbar { display: none; }
-      [data-mq="work-tabs"] > button { flex: none !important; transform: none !important; display: flex !important; align-items: center !important; gap: 9px !important; padding: 12px 18px !important; border-radius: 999px !important; }
-      [data-mq="work-tabs"] > button > div:first-child { gap: 0 !important; }
-      [data-mq="work-tabs"] > button > div:first-child > div:first-child { font-size: 10.5px !important; letter-spacing: .1em !important; white-space: nowrap; }
+      [data-mq="work-tabs"] { flex-direction: column !important; gap: 8px !important; }
+      [data-mq="work-tabs"] > button { width: 100% !important; transform: none !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 0 !important; padding: 14px 12px !important; border-radius: 999px !important; box-sizing: border-box; }
+      [data-mq="work-tabs"] > button > div:first-child { flex: none !important; gap: 0 !important; }
+      [data-mq="work-tabs"] > button > div:first-child > div:first-child { font-size: 11px !important; letter-spacing: .14em !important; white-space: nowrap; }
       [data-mq="work-tabs"] > button > div:first-child > div:nth-child(2) { display: none !important; }
       [data-mq="work-tabs"] > button > div:nth-child(2) { display: none !important; }
       /* starting points */
@@ -189,7 +192,7 @@
     <div style="border-top:1px solid rgba(15,29,51,.35);"></div>
     <div style="padding:clamp(36px,5vw,54px) 12px clamp(32px,4.5vw,46px); display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px;">
       <div data-mq="who-head" style="font-family:'Libre Caslon Display', serif; font-size:clamp(38px,5.2vw,64px); line-height:1.16; color:#0F1D33; text-wrap:balance;">Homes of every shape and size — built, rebuilt, and kept sound for the long run.</div>
-      <div style="display:flex; align-items:center; gap:18px; width:100%; max-width:720px;">
+      <div data-mq="who-deck" style="display:flex; align-items:center; gap:18px; width:100%; max-width:720px;">
         <div style="flex:1; height:1px; background:#C9BEA0;"></div>
         <div style="font-family:'Libre Caslon Text', serif; font-style:italic; font-size:18.5px; line-height:1.6; color:#5A5546; text-wrap:balance; flex:none; max-width:34ch;">Bucks County builders. The houses change; the standard doesn&rsquo;t.</div>
         <div style="flex:1; height:1px; background:#C9BEA0;"></div>
