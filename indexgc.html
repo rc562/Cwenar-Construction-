@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Cwenar Construction — General Contractor · New Hope, PA</title>
+  <meta name="description" content="Ground-up builds, whole-home renovations, and the kitchens, baths, and repairs in between. Building in Bucks County and the tri-state since 1995.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='12 18 76 64'%3E%3Cpath d='M32 20 H68 L69 34 H86 L76 80 H24 L14 34 H31 Z' fill='%23A9873F'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=Libre+Caslon+Display&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    html, body { margin: 0; padding: 0; background: #F7F4EE; }
+    body { font-family: 'Archivo', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #2E6FB4; text-decoration: none; }
+    a:hover { color: #16305B; }
+    ::selection { background: #16305B; color: #F7F4EE; }
+    input::placeholder, textarea::placeholder { color: #9A937F; }
+    @keyframes cwdraw { to { stroke-dashoffset: 0; } }
+    @keyframes cwfade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes cwrise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 760px) {
+      /* nav */
+      #cw-nav > div:first-of-type { padding: 0 14px 0 10px !important; gap: 12px !important; height: 64px !important; }
+      #cw-nav a[href^="tel"] { font-size: 13.5px !important; }
+      #cw-nav a[href="#contact"] { padding: 10px 14px !important; font-size: 10.5px !important; }
+      [data-mq="nav-div"] { display: none !important; }
+      #nav-menu-wrap { top: 60px !important; left: 10px !important; }
+      /* hero */
+      #top { min-height: 100svh !important; }
+      #top > div:first-of-type { padding: 104px 24px 44px !important; gap: 22px !important; }
+      #hero-logo-static { width: min(320px, 80vw) !important; }
+      #top h1 { font-size: 39px !important; line-height: 1.14 !important; }
+      #top h1 + div { font-size: 15.5px !important; line-height: 1.6 !important; }
+      [data-mq="kicker"] > div:first-child, [data-mq="kicker"] > div:last-child { display: none !important; }
+      [data-mq="kicker"] > div:nth-child(2) { font-size: 10px !important; letter-spacing: .26em !important; padding-left: 0 !important; text-align: center; }
+      [data-mq="hero-cta"] { width: 100%; max-width: 420px; gap: 10px !important; margin-top: 0 !important; }
+      [data-mq="hero-cta"] > a { flex: 1 1 0; text-align: center; padding: 16px 6px !important; font-size: 11px !important; letter-spacing: .1em !important; white-space: nowrap; }
+      /* type + sections */
+      h2 { font-size: 32px !important; }
+      #who { padding: 56px 24px 6px !important; }
+      #work { padding: 38px 20px 46px !important; }
+      #work > div > [data-reveal]:first-child, #ideas > div > [data-reveal]:first-child { gap: 12px !important; }
+      /* what-we-build: pill tabs + panel */
+      #work-grid { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+      #work-grid > div:nth-child(2) { min-height: 0 !important; }
+      [data-mq="work-tabs"] { flex-direction: row !important; gap: 8px !important; overflow-x: auto; padding: 2px 2px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      [data-mq="work-tabs"]::-webkit-scrollbar { display: none; }
+      [data-mq="work-tabs"] > button { flex: none !important; transform: none !important; display: flex !important; align-items: center !important; gap: 9px !important; padding: 11px 16px !important; border-radius: 999px !important; }
+      [data-mq="work-tabs"] > button > div:first-child { font-size: 15px !important; }
+      [data-mq="work-tabs"] > button > div:nth-child(2) > div:first-child { font-size: 10.5px !important; letter-spacing: .1em !important; white-space: nowrap; }
+      [data-mq="work-tabs"] > button > div:nth-child(2) > div:nth-child(2) { display: none !important; }
+      [data-mq="work-tabs"] > button > div:nth-child(3) { display: none !important; }
+      /* starting points */
+      #ideas { padding: 44px 20px 52px !important; }
+      [data-mq="idea-row"] { grid-template-columns: 1fr 26px !important; gap: 3px 12px !important; padding: 18px 4px !important; align-items: center !important; }
+      [data-mq="idea-row"] > div:first-child { grid-column: 1 / -1; }
+      [data-mq="idea-row"] > div:nth-child(2) { font-size: 20px !important; line-height: 1.3 !important; }
+      [data-mq="idea-detail"] { padding: 0 0 28px !important; }
+      [data-mq="idea-card"] { padding: 20px 16px 16px !important; gap: 18px !important; }
+      [data-mq="idea-grid"] { grid-template-columns: 1fr !important; gap: 20px !important; }
+      /* about */
+      #about { padding: 50px 24px !important; }
+      /* contact */
+      #contact { padding: 50px 20px 56px !important; }
+      #contact > div:first-of-type { display: flex !important; flex-direction: column !important; gap: 30px !important; }
+      #contact > div:first-of-type > div:nth-child(2) { padding: 24px 16px 22px !important; border-radius: 5px; }
+      [data-mq="form-row"] { grid-template-columns: 1fr !important; gap: 14px !important; }
+      #contact input, #contact select, #contact textarea { font-size: 16px !important; padding: 14px !important; }
+      #contact label { font-size: 9.5px !important; }
+      #contact button { width: 100% !important; padding: 17px 10px !important; }
+      [data-mq="contact-info"] > div { gap: 14px !important; padding: 16px 0 !important; }
+      [data-mq="contact-info"] > div > div:first-child { width: 86px !important; font-size: 9px !important; flex: none; }
+      /* footer */
+      [data-screen-label="Footer"] { padding: 26px 16px 16px !important; }
+      [data-mq="photo-panel"] { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; padding: 18px 16px !important; text-align: left; }
+      [data-mq="photo-panel"] a, [data-mq="photo-panel"] button { width: 100% !important; box-sizing: border-box; text-align: center !important; justify-content: center !important; }
+      [data-mq="footer-brand"] { flex-direction: column !important; gap: 18px !important; justify-content: center !important; }
+      [data-mq="footer-brand"] > div { justify-content: center !important; flex-wrap: wrap !important; gap: 12px 18px !important; }
+      [data-mq="footer-legal"] { flex-direction: column !important; align-items: center !important; gap: 6px !important; text-align: center; }
+    }
+  </style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="wksg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6FBFEF"></stop>
+      <stop offset="0.55" stop-color="#2E6FB4"></stop>
+      <stop offset="1" stop-color="#16305B"></stop>
+    </linearGradient>
+    <linearGradient id="kbrass" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#D4B368"></stop>
+      <stop offset="0.55" stop-color="#A9873F"></stop>
+      <stop offset="1" stop-color="#7C6128"></stop>
+    </linearGradient>
+    <linearGradient id="chromec" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop>
+      <stop offset="0.42" stop-color="#DDE9F4"></stop>
+      <stop offset="0.55" stop-color="#9CC0E4"></stop>
+      <stop offset="1" stop-color="#3E6EA8"></stop>
+    </linearGradient>
+    <pattern id="cwstone" width="56" height="30" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="56" y2="0" stroke="#16305B" stroke-width="1"></line>
+      <line x1="0" y1="15" x2="56" y2="15" stroke="#16305B" stroke-width="1"></line>
+      <line x1="18" y1="0" x2="18" y2="15" stroke="#16305B" stroke-width="1"></line>
+      <line x1="40" y1="15" x2="40" y2="30" stroke="#16305B" stroke-width="1"></line>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<div id="cw-nav" style="position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(15,29,51,0);">
+  <div style="max-width:1440px; margin:0 auto; padding:0 clamp(20px,4vw,48px); height:78px; display:flex; align-items:center; gap:clamp(16px,2.5vw,36px); position:relative;">
+    <a id="nav-word" href="#top" aria-label="Cwenar Construction — home" style="display:flex; align-items:center; min-width:112px; height:58px;"></a>
+    <div style="flex:1;"></div>
+    <div id="nav-links" style="display:flex; align-items:center; gap:clamp(14px,2.2vw,32px); transition:opacity .45s ease, transform .45s ease;">
+      <a href="#work" style="font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.78);" style-hover="color:#FFFFFF;">WORK</a>
+      <a href="#ideas" style="font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.78);" style-hover="color:#FFFFFF;">IDEAS</a>
+      <a href="#about" style="font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.78);" style-hover="color:#FFFFFF;">ABOUT</a>
+      <div data-mq="nav-div" style="width:1px; height:20px; background:rgba(247,244,238,.18);"></div>
+      <a href="tel:+12155006311" style="font-size:13px; font-weight:700; letter-spacing:.06em; color:#F7F4EE; white-space:nowrap;">{{ phone }}</a>
+      <a href="#contact" style="background:#A9873F; color:#0F1D33; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:12px 24px; border-radius:3px; transition:background .2s ease; white-space:nowrap;" style-hover="background:#C4A055; color:#0F1D33;">CONTACT</a>
+    </div>
+    <div id="nav-menu-wrap" style="position:absolute; left:clamp(20px,4vw,48px); top:72px; opacity:0; pointer-events:none; transition:opacity .45s ease;">
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; top:0; left:0; background:#0F1D33; border:1px solid rgba(247,244,238,.14); border-radius:6px; box-shadow:0 28px 70px rgba(5,10,20,.5); padding:10px; display:flex; flex-direction:column; min-width:240px; animation:cwrise .32s cubic-bezier(.2,.6,.2,1) both;">
+          <a href="#work" onClick="{{ closeMenu }}" style="padding:14px 16px; font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.82); border-radius:4px; transition:background .2s ease;" style-hover="background:rgba(247,244,238,.07); color:#FFFFFF;">WHAT WE BUILD</a>
+          <a href="#ideas" onClick="{{ closeMenu }}" style="padding:14px 16px; font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.82); border-radius:4px; transition:background .2s ease;" style-hover="background:rgba(247,244,238,.07); color:#FFFFFF;">STARTING POINTS</a>
+          <a href="#about" onClick="{{ closeMenu }}" style="padding:14px 16px; font-size:12px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.82); border-radius:4px; transition:background .2s ease;" style-hover="background:rgba(247,244,238,.07); color:#FFFFFF;">MEET BOB</a>
+          <div style="height:1px; background:rgba(247,244,238,.14); margin:8px 6px;"></div>
+          <a href="tel:+12155006311" onClick="{{ closeMenu }}" style="padding:12px 16px; font-size:13px; font-weight:700; letter-spacing:.06em; color:#F7F4EE; border-radius:4px;" style-hover="background:rgba(247,244,238,.07);">{{ phone }}</a>
+          <a href="#contact" onClick="{{ closeMenu }}" style="margin:8px 6px 4px; background:#A9873F; color:#0F1D33; text-align:center; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:13px 18px; border-radius:4px; transition:background .2s ease;" style-hover="background:#C4A055; color:#0F1D33;">START A PROJECT</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+<!-- flying logo (docks into nav on scroll) -->
+<img id="fly-logo" src="assets/cwenar-logo.png" alt="Menu" onClick="{{ toggleMenu }}" style="position:fixed; top:0; left:0; width:320px; height:auto; z-index:101; transform-origin:0 0; opacity:0; pointer-events:none; cursor:pointer; will-change:transform; transition:opacity .5s ease; filter:drop-shadow(0 18px 40px rgba(0,0,0,.5));">
+
+<!-- HERO -->
+<div id="top" data-screen-label="Hero" style="position:relative; min-height:100vh; background:#0F1D33; background-image:radial-gradient(ellipse 120% 85% at 50% -20%, #1B3A6B 0%, #0F1D33 64%); display:flex; flex-direction:column; overflow:hidden;">
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:150px 48px 70px; position:relative; gap:32px;">
+    <img id="hero-logo-static" src="assets/cwenar-logo.png" alt="Cwenar Construction — General Contractor" style="width:320px; height:auto; filter:drop-shadow(0 18px 40px rgba(0,0,0,.5)); opacity:0; animation:cwfade .9s ease .1s forwards;">
+    <div data-mq="kicker" style="display:flex; align-items:center; gap:16px; animation:cwrise .8s cubic-bezier(.2,.6,.2,1) .35s both;">
+      <div style="width:44px; height:1px; background:#A9873F;"></div>
+      <div style="font-size:12px; font-weight:600; letter-spacing:.34em; color:#A9873F; padding-left:.34em;">NEW HOPE, PENNSYLVANIA — SINCE 1995</div>
+      <div style="width:44px; height:1px; background:#A9873F;"></div>
+    </div>
+    <h1 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:72px; line-height:1.1; color:#F7F4EE; max-width:1000px; text-wrap:balance; animation:cwrise .8s cubic-bezier(.2,.6,.2,1) .5s both;">Built for the next hundred years.</h1>
+    <div style="font-family:'Libre Caslon Text', serif; font-size:18.5px; line-height:1.65; color:rgba(247,244,238,.72); max-width:640px; text-wrap:pretty; animation:cwrise .8s cubic-bezier(.2,.6,.2,1) .62s both;">Ground-up builds, whole-home renovations, and the kitchens, baths, and repairs in between.</div>
+    <div data-mq="hero-cta" style="display:flex; align-items:center; gap:18px; margin-top:4px; animation:cwrise .8s cubic-bezier(.2,.6,.2,1) .74s both;">
+      <a href="#contact" style="background:#A9873F; color:#0F1D33; font-size:12.5px; font-weight:700; letter-spacing:.16em; padding:17px 34px; border-radius:3px; transition:background .2s ease;" style-hover="background:#C4A055; color:#0F1D33;">START A PROJECT</a>
+      <a href="#work" style="border:1px solid rgba(247,244,238,.35); color:#F7F4EE; font-size:12.5px; font-weight:600; letter-spacing:.16em; padding:16px 34px; border-radius:3px; transition:border-color .2s ease;" style-hover="border-color:#F7F4EE; color:#FFFFFF;">WHAT WE BUILD</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- WHO WE ARE -->
+<div id="who" data-screen-label="Who we are" style="background:#F7F4EE; padding:92px 48px 26px;">
+  <div data-reveal style="max-width:980px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:26px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div style="width:44px; height:1px; background:#A9873F;"></div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:.3em; color:#A9873F; padding-left:.3em;">WHO WE ARE</div>
+      <div style="width:44px; height:1px; background:#A9873F;"></div>
+    </div>
+    <div style="font-family:'Libre Caslon Display', serif; font-size:clamp(30px,3.4vw,44px); line-height:1.3; color:#0F1D33; text-wrap:balance;">Homes of every shape and size — built, rebuilt, and kept sound for the long run.</div>
+    <div style="font-family:'Libre Caslon Text', serif; font-size:17px; line-height:1.75; color:#5A5546; max-width:640px; text-wrap:pretty;">Bucks County builders since 1995. The houses change; the standard doesn&rsquo;t.</div>
+  </div>
+</div>
+
+<!-- THE WORK -->
+<div id="work" data-screen-label="The work — explorer" style="background:#F7F4EE; padding:60px 48px 68px;">
+  <div style="max-width:1320px; margin:0 auto; display:flex; flex-direction:column; gap:38px;">
+    <div data-reveal style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.1; color:#0F1D33; max-width:560px; text-wrap:balance;">What we build</h2>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16px; line-height:1.7; color:#5A5546; max-width:420px;">Most of what we take on is whole-house scale. Select a category to see what a typical job involves.</div>
+    </div>
+
+    <div id="work-grid" data-reveal style="display:grid; grid-template-columns:400px 1fr; gap:28px; align-items:stretch;">
+      <!-- selector -->
+      <div data-mq="work-tabs" style="display:flex; flex-direction:column; gap:14px;">
+        <button type="button" onClick="{{ pickTab1 }}" style="font-family:'Archivo', sans-serif; text-align:left; cursor:pointer; border:1px solid {{ tab1Border }}; background:{{ tab1Bg }}; border-radius:4px; padding:26px 28px; display:flex; gap:22px; align-items:center; flex:1; transition:border-color .25s ease, background .25s ease, transform .25s ease; transform:{{ tab1Shift }};" style-hover="border-color:#0F1D33;">
+          <div style="display:flex; flex-direction:column; gap:7px; flex:1;">
+            <div style="font-size:14px; font-weight:700; letter-spacing:.18em; color:#0F1D33;">WHOLE-HOME RENOVATION</div>
+            <div style="font-family:'Libre Caslon Text', serif; font-size:14px; line-height:1.6; color:#5A5546;">The house taken back to its frame and rebuilt — plan, structure, systems, additions.</div>
+          </div>
+          <div style="font-size:16px; color:{{ tab1Num }}; transition:color .25s ease;">→</div>
+        </button>
+        <button type="button" onClick="{{ pickTab0 }}" style="font-family:'Archivo', sans-serif; text-align:left; cursor:pointer; border:1px solid {{ tab0Border }}; background:{{ tab0Bg }}; border-radius:4px; padding:26px 28px; display:flex; gap:22px; align-items:center; flex:1; transition:border-color .25s ease, background .25s ease, transform .25s ease; transform:{{ tab0Shift }};" style-hover="border-color:#0F1D33;">
+          <div style="display:flex; flex-direction:column; gap:7px; flex:1;">
+            <div style="font-size:14px; font-weight:700; letter-spacing:.18em; color:#0F1D33;">GROUND-UP CONSTRUCTION</div>
+            <div style="font-family:'Libre Caslon Text', serif; font-size:14px; line-height:1.6; color:#5A5546;">Complete residences and their outbuildings, from excavation to keys.</div>
+          </div>
+          <div style="font-size:16px; color:{{ tab0Num }}; transition:color .25s ease;">→</div>
+        </button>
+        <button type="button" onClick="{{ pickTab2 }}" style="font-family:'Archivo', sans-serif; text-align:left; cursor:pointer; border:1px solid {{ tab2Border }}; background:{{ tab2Bg }}; border-radius:4px; padding:26px 28px; display:flex; gap:22px; align-items:center; flex:1; transition:border-color .25s ease, background .25s ease, transform .25s ease; transform:{{ tab2Shift }};" style-hover="border-color:#0F1D33;">
+          <div style="display:flex; flex-direction:column; gap:7px; flex:1;">
+            <div style="font-size:14px; font-weight:700; letter-spacing:.18em; color:#0F1D33;">KITCHENS, BATHS &amp; REPAIRS</div>
+            <div style="font-family:'Libre Caslon Text', serif; font-size:14px; line-height:1.6; color:#5A5546;">Single-room remodels and the fixes that keep a house sound.</div>
+          </div>
+          <div style="font-size:16px; color:{{ tab2Num }}; transition:color .25s ease;">→</div>
+        </button>
+      </div>
+
+      <!-- panel -->
+      <div style="background:#FFFFFF; border:1px solid #E0D9C8; border-radius:4px; display:flex; flex-direction:column; overflow:hidden; min-height:560px;">
+        <sc-if value="{{ isTab0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flex-direction:column; height:100%;">
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 28px; border-bottom:1px solid #ECE6D8;">
+              <div style="font-size:11px; font-weight:700; letter-spacing:.24em; color:#0F1D33;">FRONT ELEVATION — NEW RESIDENCE</div>
+              <div style="flex:1;"></div>
+              <div style="font-size:11px; font-weight:600; letter-spacing:.2em; color:#8D8776;">TYPICAL SCOPE</div>
+            </div>
+            <div style="flex:1; padding:10px 18px 0;">
+              <svg viewBox="0 0 760 440" style="width:100%; height:auto; display:block;">
+                <line x1="30" y1="392" x2="730" y2="392" stroke="#16305B" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .05s forwards;"></line>
+                <line x1="30" y1="398" x2="730" y2="398" stroke="#16305B" stroke-width="1" opacity="0.3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .15s forwards;"></line>
+                <path d="M138,188 L150,96 L430,96 L442,188" fill="none" stroke="#16305B" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .9s ease .25s forwards;"></path>
+                <line x1="138" y1="188" x2="442" y2="188" stroke="#16305B" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease .5s forwards;"></line>
+                <g opacity="0.3" style="opacity:0; animation:cwfade .6s ease .9s forwards;">
+                  <line x1="186" y1="96" x2="176" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="222" y1="96" x2="214" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="258" y1="96" x2="252" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="294" y1="96" x2="290" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="330" y1="96" x2="328" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="366" y1="96" x2="366" y2="188" stroke="#16305B" stroke-width="1"></line>
+                  <line x1="402" y1="96" x2="404" y2="188" stroke="#16305B" stroke-width="1"></line>
+                </g>
+                <path d="M334,96 L334,54 L360,54 L360,96" fill="none" stroke="#16305B" stroke-width="1.6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .6s ease .6s forwards;"></path>
+                <line x1="330" y1="54" x2="364" y2="54" stroke="#16305B" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .4s ease .8s forwards;"></line>
+                <path d="M150,188 L150,392 M430,188 L430,392" fill="none" stroke="#16305B" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .9s ease .4s forwards;"></path>
+                <line x1="142" y1="264" x2="438" y2="264" stroke="#16305B" stroke-width="1.4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .7s forwards;"></line>
+                <g stroke="#16305B" stroke-width="1.4" style="opacity:0; animation:cwfade .5s ease 1s forwards;">
+                  <line x1="162" y1="264" x2="162" y2="392"></line>
+                  <line x1="249" y1="264" x2="249" y2="392"></line>
+                  <line x1="336" y1="264" x2="336" y2="392"></line>
+                  <line x1="423" y1="264" x2="423" y2="392"></line>
+                </g>
+                <g stroke="#16305B" stroke-width="1.3" fill="none" style="opacity:0; animation:cwfade .55s ease 1.1s forwards;">
+                  <rect x="268" y="300" width="44" height="92"></rect>
+                  <line x1="268" y1="316" x2="312" y2="316"></line>
+                  <line x1="290" y1="316" x2="290" y2="392"></line>
+                  <rect x="180" y="300" width="56" height="68"></rect>
+                  <line x1="208" y1="300" x2="208" y2="368"></line>
+                  <line x1="180" y1="334" x2="236" y2="334"></line>
+                  <rect x="344" y="300" width="56" height="68"></rect>
+                  <line x1="372" y1="300" x2="372" y2="368"></line>
+                  <line x1="344" y1="334" x2="400" y2="334"></line>
+                </g>
+                <g stroke="#16305B" stroke-width="1.3" fill="none" style="opacity:0; animation:cwfade .55s ease 1.2s forwards;">
+                  <rect x="184" y="206" width="48" height="46"></rect>
+                  <line x1="208" y1="206" x2="208" y2="252"></line>
+                  <line x1="184" y1="229" x2="232" y2="229"></line>
+                  <rect x="266" y="206" width="48" height="46"></rect>
+                  <line x1="290" y1="206" x2="290" y2="252"></line>
+                  <line x1="266" y1="229" x2="314" y2="229"></line>
+                  <rect x="348" y="206" width="48" height="46"></rect>
+                  <line x1="372" y1="206" x2="372" y2="252"></line>
+                  <line x1="348" y1="229" x2="396" y2="229"></line>
+                </g>
+                <path d="M462,316 L470,286 L660,286 L668,316" fill="none" stroke="#16305B" stroke-width="1.6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease .85s forwards;"></path>
+                <path d="M470,316 L470,392 M660,316 L660,392 M462,316 L668,316" fill="none" stroke="#16305B" stroke-width="1.6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease 1s forwards;"></path>
+                <g stroke="#16305B" stroke-width="1.2" fill="none" style="opacity:0; animation:cwfade .5s ease 1.3s forwards;">
+                  <rect x="492" y="336" width="48" height="56"></rect>
+                  <line x1="492" y1="336" x2="540" y2="392"></line>
+                  <rect x="552" y="336" width="48" height="56"></rect>
+                  <line x1="552" y1="336" x2="600" y2="392"></line>
+                  <rect x="614" y="336" width="30" height="56"></rect>
+                </g>
+                <g style="opacity:{{ annoOpacity }}; transition:opacity .4s ease;">
+                  <g style="opacity:0; animation:cwfade .6s ease 1.5s forwards;">
+                    <text x="46" y="76" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">STANDING-SEAM ROOF</text>
+                    <path d="M112,84 L150,110" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="150" cy="110" r="2.4" fill="#A9873F"></circle>
+                    <text x="34" y="250" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">COVERED PORCH</text>
+                    <path d="M80,258 L146,282" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="146" cy="282" r="2.4" fill="#A9873F"></circle>
+                    <text x="560" y="252" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">POOL HOUSE</text>
+                    <path d="M596,260 L580,300" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="580" cy="300" r="2.4" fill="#A9873F"></circle>
+                    <line x1="150" y1="414" x2="668" y2="414" stroke="#A9873F" stroke-width="1"></line>
+                    <line x1="150" y1="408" x2="150" y2="420" stroke="#A9873F" stroke-width="1"></line>
+                    <line x1="668" y1="408" x2="668" y2="420" stroke="#A9873F" stroke-width="1"></line>
+                    <text x="368" y="432" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="2" fill="#A9873F">OVERALL 92&prime;-6&Prime;</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div style="padding:22px 28px 26px; border-top:1px solid #ECE6D8; display:flex; flex-direction:column; gap:14px; animation:cwrise .5s ease both;">
+              <div style="font-family:'Libre Caslon Text', serif; font-size:15.5px; line-height:1.7; color:#4A4638;">Complete residences carried from site work to keys under one contract — and, where the property calls for it, the full program around them: barns, guest houses, pool houses, drives, and terraces, built as one composition.</div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">CUSTOM HOMES</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">ESTATE OUTBUILDINGS</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">SITE &amp; EXCAVATION</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">POOLS &amp; TERRACES</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isTab1 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; height:100%;">
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 28px; border-bottom:1px solid #ECE6D8;">
+              <div style="font-size:11px; font-weight:700; letter-spacing:.24em; color:#0F1D33;">BUILDING SECTION — WHOLE-HOME RENOVATION</div>
+              <div style="flex:1;"></div>
+              <div style="font-size:11px; font-weight:600; letter-spacing:.2em; color:#8D8776;">TYPICAL SCOPE</div>
+            </div>
+            <div style="flex:1; padding:10px 18px 0;">
+              <svg viewBox="0 0 760 440" style="width:100%; height:auto; display:block;">
+                <line x1="30" y1="392" x2="730" y2="392" stroke="#16305B" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .05s forwards;"></line>
+                <line x1="30" y1="398" x2="730" y2="398" stroke="#16305B" stroke-width="1" opacity="0.3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .15s forwards;"></line>
+                <path d="M180,392 L180,208 L380,80 L580,208 L580,392" fill="none" stroke="#93A9C6" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw 1.1s ease .25s forwards;"></path>
+                <g stroke="#93A9C6" stroke-width="1" opacity="0.45" style="opacity:0; animation:cwfade .6s ease 1s forwards;">
+                  <path d="M380,92 L200,207 M380,104 L220,206 M380,116 L240,206" fill="none"></path>
+                  <path d="M380,92 L560,207 M380,104 L540,206 M380,116 L520,206" fill="none"></path>
+                </g>
+                <line x1="180" y1="208" x2="580" y2="208" stroke="#16305B" stroke-width="1.2" opacity="0.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease .6s forwards;"></line>
+                <line x1="180" y1="256" x2="580" y2="256" stroke="#16305B" stroke-width="1.6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease .7s forwards;"></line>
+                <g stroke="#16305B" stroke-width="1" opacity="0.4" style="opacity:0; animation:cwfade .5s ease 1.05s forwards;">
+                  <line x1="196" y1="256" x2="196" y2="266"></line><line x1="220" y1="256" x2="220" y2="266"></line><line x1="244" y1="256" x2="244" y2="266"></line><line x1="268" y1="256" x2="268" y2="266"></line><line x1="292" y1="256" x2="292" y2="266"></line><line x1="316" y1="256" x2="316" y2="266"></line><line x1="340" y1="256" x2="340" y2="266"></line><line x1="364" y1="256" x2="364" y2="266"></line><line x1="388" y1="256" x2="388" y2="266"></line><line x1="412" y1="256" x2="412" y2="266"></line><line x1="436" y1="256" x2="436" y2="266"></line><line x1="460" y1="256" x2="460" y2="266"></line><line x1="484" y1="256" x2="484" y2="266"></line><line x1="508" y1="256" x2="508" y2="266"></line><line x1="532" y1="256" x2="532" y2="266"></line><line x1="556" y1="256" x2="556" y2="266"></line>
+                </g>
+                <line x1="208" y1="256" x2="552" y2="256" stroke="#A9873F" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .9s cubic-bezier(.3,0,.2,1) 1.15s forwards;"></line>
+                <g stroke="#A9873F" stroke-width="2.6" style="opacity:0; animation:cwfade .4s ease 1.7s forwards;">
+                  <line x1="208" y1="256" x2="208" y2="392"></line>
+                  <line x1="552" y1="256" x2="552" y2="392"></line>
+                </g>
+                <g stroke="#16305B" stroke-width="1.3" fill="none" style="opacity:0; animation:cwfade .55s ease 1.3s forwards;">
+                  <line x1="330" y1="256" x2="330" y2="392"></line>
+                  <line x1="338" y1="256" x2="338" y2="392"></line>
+                  <line x1="330" y1="300" x2="338" y2="300"></line>
+                  <path d="M420,392 L448,392 L448,375 L476,375 L476,358 L504,358 L504,341 L532,341 L532,324 L560,324 L560,256"></path>
+                </g>
+                <g style="opacity:0; animation:cwfade .55s ease 1.45s forwards;">
+                  <path d="M200,272 L560,272" stroke="#2E6FB4" stroke-width="1.2" stroke-dasharray="5 4" fill="none"></path>
+                  <path d="M232,272 L232,376 L288,376" stroke="#2E6FB4" stroke-width="1.2" stroke-dasharray="5 4" fill="none"></path>
+                  <circle cx="288" cy="376" r="4" fill="none" stroke="#2E6FB4" stroke-width="1.2"></circle>
+                  <path d="M470,272 L470,236" stroke="#2E6FB4" stroke-width="1.2" stroke-dasharray="5 4" fill="none"></path>
+                  <circle cx="470" cy="232" r="4" fill="none" stroke="#2E6FB4" stroke-width="1.2"></circle>
+                </g>
+                <g style="opacity:{{ annoOpacity }}; transition:opacity .4s ease;">
+                  <g style="opacity:0; animation:cwfade .6s ease 1.7s forwards;">
+                    <text x="600" y="120" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">ORIGINAL SHELL,</text>
+                    <text x="600" y="136" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">RETAINED</text>
+                    <path d="M596,124 L520,168" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="520" cy="168" r="2.4" fill="#A9873F"></circle>
+                    <text x="40" y="230" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">NEW STRUCTURAL</text>
+                    <text x="40" y="246" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">BEAM</text>
+                    <path d="M148,240 L208,254" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="208" cy="254" r="2.4" fill="#A9873F"></circle>
+                    <text x="600" y="330" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">NEW WIRING</text>
+                    <text x="600" y="346" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">&amp; PLUMBING</text>
+                    <path d="M596,336 L564,324" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="564" cy="324" r="2.4" fill="#A9873F"></circle>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div style="padding:22px 28px 26px; border-top:1px solid #ECE6D8; display:flex; flex-direction:column; gap:14px; animation:cwrise .5s ease both;">
+              <div style="font-family:'Libre Caslon Text', serif; font-size:15.5px; line-height:1.7; color:#4A4638;">The largest share of our work. The house comes back to its frame; the plan is rethought room by room; bearing walls move, steel goes in, wiring, plumbing, and HVAC are replaced end to end — and additions go up where the plan needs room. Families usually move out; what they move back into is a different house inside the one they bought.</div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">BACK TO THE FRAME</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">STRUCTURAL REWORK</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">MAJOR ADDITIONS</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">ALL-NEW SYSTEMS</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isTab2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; height:100%;">
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 28px; border-bottom:1px solid #ECE6D8;">
+              <div style="font-size:11px; font-weight:700; letter-spacing:.24em; color:#0F1D33;">INTERIOR ELEVATION — KITCHEN REMODEL</div>
+              <div style="flex:1;"></div>
+              <div style="font-size:11px; font-weight:600; letter-spacing:.2em; color:#8D8776;">TYPICAL SCOPE</div>
+            </div>
+            <div style="flex:1; padding:10px 18px 0;">
+              <svg viewBox="0 0 760 440" style="width:100%; height:auto; display:block;">
+                <line x1="30" y1="392" x2="730" y2="392" stroke="#16305B" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .05s forwards;"></line>
+                <line x1="30" y1="398" x2="730" y2="398" stroke="#16305B" stroke-width="1" opacity="0.3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .15s forwards;"></line>
+                <line x1="140" y1="96" x2="620" y2="96" stroke="#16305B" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .7s ease .25s forwards;"></line>
+                <path d="M140,96 L140,392 M620,96 L620,392" fill="none" stroke="#16305B" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .4s forwards;"></path>
+                <line x1="150" y1="296" x2="610" y2="296" stroke="#16305B" stroke-width="2.2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .6s forwards;"></line>
+                <line x1="150" y1="303" x2="610" y2="303" stroke="#16305B" stroke-width="1" opacity="0.4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" style="animation:cwdraw .8s ease .7s forwards;"></line>
+                <g stroke="#16305B" fill="none" style="opacity:0; animation:cwfade .55s ease .9s forwards;">
+                  <rect x="160" y="136" width="172" height="96" stroke-width="1.6"></rect>
+                  <g stroke-width="1.2" opacity="0.8"><line x1="217" y1="136" x2="217" y2="232"></line><line x1="275" y1="136" x2="275" y2="232"></line></g>
+                  <g stroke-width="1.4"><line x1="211" y1="214" x2="211" y2="224"></line><line x1="269" y1="214" x2="269" y2="224"></line><line x1="326" y1="214" x2="326" y2="224"></line></g>
+                  <rect x="566" y="136" width="34" height="96" stroke-width="1.6"></rect>
+                  <line x1="572" y1="214" x2="572" y2="224" stroke-width="1.4"></line>
+                </g>
+                <g stroke="#16305B" fill="none" style="opacity:0; animation:cwfade .55s ease 1.05s forwards;">
+                  <rect x="352" y="140" width="94" height="128" stroke-width="1.6"></rect>
+                  <g stroke-width="1" opacity="0.8"><line x1="399" y1="140" x2="399" y2="268"></line><line x1="352" y1="204" x2="446" y2="204"></line></g>
+                  <line x1="346" y1="272" x2="452" y2="272" stroke-width="1.6"></line>
+                  <path d="M394,296 L394,282 Q394,276 401,276 L410,276" stroke-width="1.6"></path>
+                </g>
+                <g stroke="#16305B" fill="none" style="opacity:0; animation:cwfade .55s ease 1.15s forwards;">
+                  <path d="M478,140 L546,140 L554,196 L470,196 Z" stroke-width="1.6"></path>
+                  <rect x="500" y="96" width="24" height="44" stroke-width="1.1" opacity="0.55"></rect>
+                  <line x1="470" y1="196" x2="554" y2="196" stroke-width="1.8"></line>
+                </g>
+                <g stroke="#16305B" fill="none" style="opacity:0; animation:cwfade .55s ease 1.25s forwards;">
+                  <rect x="160" y="303" width="440" height="77" stroke-width="1.6"></rect>
+                  <g stroke-width="1.2" opacity="0.8"><line x1="250" y1="303" x2="250" y2="380"></line><line x1="340" y1="303" x2="340" y2="380"></line><line x1="466" y1="303" x2="466" y2="380"></line><line x1="554" y1="303" x2="554" y2="380"></line></g>
+                  <g stroke-width="1.2" opacity="0.9"><line x1="168" y1="328" x2="242" y2="328"></line><line x1="168" y1="352" x2="242" y2="352"></line></g>
+                  <g stroke-width="1.4"><line x1="290" y1="312" x2="300" y2="312"></line><line x1="398" y1="312" x2="408" y2="312"></line><line x1="572" y1="312" x2="582" y2="312"></line></g>
+                  <line x1="166" y1="380" x2="594" y2="380" stroke-width="1" opacity="0.5"></line>
+                </g>
+                <g stroke="#16305B" fill="none" style="opacity:0; animation:cwfade .55s ease 1.35s forwards;">
+                  <line x1="478" y1="312" x2="554" y2="312" stroke-width="1"></line>
+                  <circle cx="492" cy="308" r="3" stroke-width="1"></circle><circle cx="510" cy="308" r="3" stroke-width="1"></circle><circle cx="528" cy="308" r="3" stroke-width="1"></circle><circle cx="546" cy="308" r="3" stroke-width="1"></circle>
+                  <rect x="486" y="324" width="60" height="48" stroke-width="1.4"></rect>
+                  <line x1="492" y1="332" x2="540" y2="332" stroke-width="2"></line>
+                </g>
+                <g stroke="#16305B" stroke-width="1" opacity="0.22" style="opacity:0; animation:cwfade .8s ease 1.5s forwards;">
+                  <line x1="184" y1="232" x2="184" y2="296"></line><line x1="208" y1="232" x2="208" y2="296"></line><line x1="232" y1="232" x2="232" y2="296"></line><line x1="256" y1="232" x2="256" y2="296"></line><line x1="280" y1="232" x2="280" y2="296"></line><line x1="304" y1="232" x2="304" y2="296"></line><line x1="328" y1="232" x2="328" y2="296"></line>
+                  <line x1="160" y1="264" x2="332" y2="264"></line>
+                </g>
+                <g style="opacity:{{ annoOpacity }}; transition:opacity .4s ease;">
+                  <g style="opacity:0; animation:cwfade .6s ease 1.7s forwards;">
+                    <text x="36" y="118" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">CABINETS,</text>
+                    <text x="36" y="134" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">SHOP-BUILT</text>
+                    <path d="M124,126 L196,150" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="196" cy="150" r="2.4" fill="#A9873F"></circle>
+                    <text x="624" y="116" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">VENTED HOOD,</text>
+                    <text x="624" y="132" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">DUCTED OUT</text>
+                    <path d="M620,124 L540,164" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="540" cy="164" r="2.4" fill="#A9873F"></circle>
+                    <text x="36" y="246" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">SINK STAYS PUT —</text>
+                    <text x="36" y="262" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">PLUMBING COST DOWN</text>
+                    <path d="M148,254 L388,288" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                    <circle cx="388" cy="288" r="2.4" fill="#A9873F"></circle>
+                    <line x1="160" y1="414" x2="600" y2="414" stroke="#A9873F" stroke-width="1"></line>
+                    <line x1="160" y1="408" x2="160" y2="420" stroke="#A9873F" stroke-width="1"></line>
+                    <line x1="600" y1="408" x2="600" y2="420" stroke="#A9873F" stroke-width="1"></line>
+                    <text x="380" y="432" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="2" fill="#A9873F">CABINET RUN 14&prime;-8&Prime;</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div style="padding:22px 28px 26px; border-top:1px solid #ECE6D8; display:flex; flex-direction:column; gap:14px; animation:cwrise .5s ease both;">
+              <div style="font-family:'Libre Caslon Text', serif; font-size:15.5px; line-height:1.7; color:#4A4638;">Kitchens, bathrooms, porches, water damage, structural corrections — single rooms and smaller projects, run by the same crew and to the same standard as the big work.</div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">KITCHENS &amp; BATHS</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">PORCHES &amp; DECKS</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">ROOFS &amp; WATER</div>
+                <div style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#16305B; border:1px solid #C9BEA0; padding:7px 12px; border-radius:999px;">STRUCTURAL FIXES</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STARTING POINTS -->
+<div id="ideas" data-screen-label="Starting points" style="background:#0F1D33; background-image:radial-gradient(ellipse 130% 90% at 50% -10%, #16305B 0%, #0F1D33 62%); padding:64px 48px 76px;">
+  <div style="max-width:1320px; margin:0 auto; display:flex; flex-direction:column; gap:48px;">
+    <div data-reveal style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.1; color:#F7F4EE; max-width:640px; text-wrap:balance;">Starting points</h2>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:15.5px; line-height:1.7; color:rgba(247,244,238,.66); max-width:420px;">Most projects start with one idea. Here are the four we hear most often — and what Bob will tell you about each.</div>
+    </div>
+    <div data-reveal style="display:flex; flex-direction:column; border-top:1px solid rgba(247,244,238,.3);">
+      <sc-for list="{{ ideas }}" as="idea" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid rgba(247,244,238,.16);">
+          <button type="button" data-mq="idea-row" onClick="{{ idea.toggle }}" style="font-family:'Archivo', sans-serif; display:grid; grid-template-columns:110px 1fr 44px; gap:24px; align-items:baseline; width:100%; text-align:left; padding:30px 14px; background:{{ idea.bg }}; border:none; cursor:pointer; transition:background .25s ease;" style-hover="background:rgba(247,244,238,.055);">
+            <div style="font-size:10px; font-weight:700; letter-spacing:.22em; color:{{ idea.tagColor }};">{{ idea.tag }}</div>
+            <div style="font-family:'Libre Caslon Display', serif; font-size:30px; line-height:1.25; color:#F7F4EE;">{{ idea.title }}</div>
+            <div style="font-family:'Libre Caslon Display', serif; font-size:24px; line-height:1; color:#C4A055; text-align:center; align-self:center; transform:{{ idea.markRot }}; transition:transform .45s cubic-bezier(.2,.6,.2,1);">+</div>
+          </button>
+          <div style="display:grid; grid-template-rows:{{ idea.gridRows }}; transition:grid-template-rows .55s cubic-bezier(.25,.6,.2,1);">
+            <div style="overflow:hidden; min-height:0;">
+            <div data-mq="idea-detail" style="padding:4px 14px 42px; opacity:{{ idea.contentOpacity }}; transform:translateY({{ idea.contentShift }}); transition:opacity .45s ease .1s, transform .5s cubic-bezier(.2,.6,.2,1) .06s;">
+              <div data-mq="idea-card" style="background:#F7F4EE; border-radius:4px; padding:34px 38px 26px; display:flex; flex-direction:column; gap:24px; box-shadow:0 22px 55px rgba(5,10,20,.35);">
+                <div data-mq="idea-grid" style="display:grid; grid-template-columns:minmax(0,5fr) minmax(0,4fr); gap:clamp(32px,4.5vw,72px); align-items:start;">
+                  <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.8; color:#4A4638; text-wrap:pretty;">{{ idea.body }}</div>
+                  <div style="display:flex; flex-direction:column; gap:0; border-top:1px solid #C9BEA0;">
+                    <div style="font-size:10px; font-weight:700; letter-spacing:.24em; color:#A9873F; padding:12px 0 4px;">WORTH KNOWING EARLY</div>
+                    <div style="font-family:'Libre Caslon Text', serif; font-size:14.5px; line-height:1.65; color:#4A4638; padding:10px 0; border-bottom:1px solid #E0D8C4;">{{ idea.c1 }}</div>
+                    <div style="font-family:'Libre Caslon Text', serif; font-size:14.5px; line-height:1.65; color:#4A4638; padding:10px 0; border-bottom:1px solid #E0D8C4;">{{ idea.c2 }}</div>
+                    <div style="font-family:'Libre Caslon Text', serif; font-size:14.5px; line-height:1.65; color:#4A4638; padding:10px 0;">{{ idea.c3 }}</div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #E0D8C4; padding-top:16px; display:flex; flex-direction:column; gap:10px;">
+                  <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px;">
+                    <div style="font-size:9.5px; font-weight:700; letter-spacing:.24em; color:#8D8776;">{{ idea.vigLabel }}</div>
+                    <div style="font-size:9.5px; font-weight:600; letter-spacing:.2em; color:#B8AE96;">N.T.S.</div>
+                  </div>
+                  <sc-if value="{{ idea.v0 }}" hint-placeholder-val="{{ false }}">
+                    <svg viewBox="0 0 900 150" style="width:100%; height:auto; display:block;">
+                      <line x1="30" y1="132" x2="870" y2="132" stroke="#16305B" stroke-width="2"></line>
+                      <line x1="30" y1="138" x2="870" y2="138" stroke="#16305B" stroke-width="1" opacity="0.3"></line>
+                      <path d="M70,34 L70,132 M520,34 L520,132 M70,34 L520,34" fill="none" stroke="#16305B" stroke-width="1.8"></path>
+                      <line x1="70" y1="42" x2="520" y2="42" stroke="#16305B" stroke-width="1" opacity="0.4"></line>
+                      <g stroke="#16305B" stroke-width="1" opacity="0.22">
+                        <line x1="70" y1="58" x2="150" y2="58"></line><line x1="70" y1="72" x2="150" y2="72"></line><line x1="70" y1="86" x2="150" y2="86"></line><line x1="70" y1="100" x2="150" y2="100"></line><line x1="70" y1="114" x2="150" y2="114"></line>
+                        <line x1="440" y1="58" x2="520" y2="58"></line><line x1="440" y1="72" x2="520" y2="72"></line><line x1="440" y1="86" x2="520" y2="86"></line><line x1="440" y1="100" x2="520" y2="100"></line><line x1="440" y1="114" x2="520" y2="114"></line>
+                      </g>
+                      <line x1="150" y1="34" x2="150" y2="132" stroke="#16305B" stroke-width="1.4"></line>
+                      <line x1="440" y1="34" x2="440" y2="132" stroke="#16305B" stroke-width="1.4"></line>
+                      <line x1="144" y1="54" x2="446" y2="54" stroke="#16305B" stroke-width="1.2" opacity="0.6"></line>
+                      <line x1="150" y1="60" x2="440" y2="60" stroke="#A9873F" stroke-width="5"></line>
+                      <g fill="none" stroke="#16305B" stroke-width="1.4">
+                        <rect x="156" y="66" width="88" height="66"></rect>
+                        <rect x="250" y="66" width="88" height="66"></rect>
+                        <rect x="344" y="66" width="88" height="66"></rect>
+                      </g>
+                      <g stroke="#16305B" stroke-width="1" opacity="0.55">
+                        <line x1="200" y1="66" x2="200" y2="132"></line><line x1="294" y1="66" x2="294" y2="132"></line><line x1="388" y1="66" x2="388" y2="132"></line>
+                        <line x1="156" y1="100" x2="244" y2="100"></line><line x1="250" y1="100" x2="338" y2="100"></line><line x1="344" y1="100" x2="432" y2="100"></line>
+                      </g>
+                      <path d="M560,132 L600,132 L600,124 L648,124 L648,116 L708,116" fill="none" stroke="#16305B" stroke-width="1.4" opacity="0.85"></path>
+                      <path d="M790,132 C787,108 793,92 785,72" fill="none" stroke="#16305B" stroke-width="1.6"></path>
+                      <path d="M785,72 C768,56 756,50 744,46 M785,72 C797,54 812,46 822,42 M786,84 C772,74 763,71 753,68" fill="none" stroke="#16305B" stroke-width="1.3"></path>
+                      <g stroke="#16305B" stroke-width="1.2" opacity="0.35">
+                        <line x1="738" y1="42" x2="730" y2="38"></line><line x1="750" y1="38" x2="744" y2="30"></line><line x1="826" y1="38" x2="834" y2="34"></line><line x1="816" y1="34" x2="820" y2="26"></line><line x1="790" y1="60" x2="796" y2="52"></line>
+                      </g>
+                      <g stroke="#A9873F" stroke-width="1">
+                        <line x1="150" y1="140" x2="150" y2="148"></line><line x1="440" y1="140" x2="440" y2="148"></line>
+                        <line x1="150" y1="144" x2="252" y2="144"></line><line x1="338" y1="144" x2="440" y2="144"></line>
+                      </g>
+                      <text x="295" y="148" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="2" fill="#A9873F">16&prime;-0&Prime; CLEAR</text>
+                    </svg>
+                  </sc-if>
+                  <sc-if value="{{ idea.v1 }}" hint-placeholder-val="{{ false }}">
+                    <svg viewBox="0 0 900 150" style="width:100%; height:auto; display:block;">
+                      <path d="M60,22 H640 V128 H60 Z" fill="none" stroke="#16305B" stroke-width="2"></path>
+                      <path d="M66,28 H634 V122 H66 Z" fill="none" stroke="#16305B" stroke-width="0.8" opacity="0.35"></path>
+                      <path d="M430,22 L430,74 M430,106 L430,128" stroke="#16305B" stroke-width="2"></path>
+                      <line x1="430" y1="106" x2="394" y2="106" stroke="#16305B" stroke-width="1.4"></line>
+                      <path d="M394,106 A36,36 0 0 1 430,70" fill="none" stroke="#A9873F" stroke-width="1.2"></path>
+                      <g fill="none" stroke="#16305B" stroke-width="1.5">
+                        <rect x="66" y="36" width="132" height="80"></rect>
+                        <rect x="72" y="42" width="18" height="30"></rect>
+                        <rect x="72" y="80" width="18" height="30"></rect>
+                      </g>
+                      <line x1="150" y1="36" x2="150" y2="116" stroke="#16305B" stroke-width="0.9" opacity="0.4"></line>
+                      <line x1="157" y1="36" x2="157" y2="116" stroke="#16305B" stroke-width="0.9" opacity="0.25"></line>
+                      <g stroke="#16305B" stroke-width="1.1" opacity="0.6">
+                        <line x1="56" y1="50" x2="64" y2="50"></line><line x1="56" y1="70" x2="64" y2="70"></line>
+                        <line x1="56" y1="90" x2="64" y2="90"></line><line x1="56" y1="110" x2="64" y2="110"></line>
+                      </g>
+                      <path d="M560,34 Q560,30 566,30 H620 Q626,30 626,36 V60 Q626,66 620,66 H566 Q560,66 560,60 Z" fill="none" stroke="#16305B" stroke-width="1.4"></path>
+                      <ellipse cx="593" cy="48" rx="24" ry="12" fill="none" stroke="#16305B" stroke-width="1" opacity="0.5"></ellipse>
+                      <rect x="446" y="100" width="94" height="28" fill="none" stroke="#16305B" stroke-width="1.2"></rect>
+                      <circle cx="470" cy="114" r="11" fill="none" stroke="#16305B" stroke-width="1.2"></circle>
+                      <circle cx="516" cy="114" r="11" fill="none" stroke="#16305B" stroke-width="1.2"></circle>
+                      <rect x="588" y="78" width="26" height="12" fill="none" stroke="#16305B" stroke-width="1.2"></rect>
+                      <ellipse cx="601" cy="102" rx="12" ry="14" fill="none" stroke="#16305B" stroke-width="1.2"></ellipse>
+                      <circle cx="760" cy="72" r="22" fill="none" stroke="#16305B" stroke-width="1.3" opacity="0.8"></circle>
+                      <line x1="760" y1="92" x2="760" y2="58" stroke="#A9873F" stroke-width="1.6"></line>
+                      <path d="M760,50 L754,63 L766,63 Z" fill="#A9873F"></path>
+                      <text x="760" y="44" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">N</text>
+                      <g stroke="#A9873F" stroke-width="1">
+                        <line x1="60" y1="136" x2="60" y2="144"></line><line x1="640" y1="136" x2="640" y2="144"></line>
+                        <line x1="60" y1="140" x2="292" y2="140"></line><line x1="408" y1="140" x2="640" y2="140"></line>
+                      </g>
+                      <text x="350" y="144" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="2" fill="#A9873F">OVERALL 24&prime;-6&Prime;</text>
+                    </svg>
+                  </sc-if>
+                  <sc-if value="{{ idea.v2 }}" hint-placeholder-val="{{ false }}">
+                    <svg viewBox="0 0 900 150" style="width:100%; height:auto; display:block;">
+                      <line x1="30" y1="132" x2="870" y2="132" stroke="#16305B" stroke-width="2"></line>
+                      <line x1="30" y1="138" x2="870" y2="138" stroke="#16305B" stroke-width="1" opacity="0.3"></line>
+                      <path d="M310,132 L310,66 M550,132 L550,66" stroke="#16305B" stroke-width="1.6"></path>
+                      <path d="M296,66 L430,18 L564,66" fill="none" stroke="#16305B" stroke-width="1.8"></path>
+                      <line x1="296" y1="66" x2="564" y2="66" stroke="#16305B" stroke-width="1" opacity="0.5"></line>
+                      <rect x="414" y="88" width="32" height="44" fill="none" stroke="#16305B" stroke-width="1.3"></rect>
+                      <g fill="none" stroke="#16305B" stroke-width="1.2">
+                        <rect x="336" y="80" width="28" height="32"></rect>
+                        <rect x="496" y="80" width="28" height="32"></rect>
+                      </g>
+                      <g stroke="#16305B" stroke-width="0.9" opacity="0.7">
+                        <line x1="350" y1="80" x2="350" y2="112"></line><line x1="336" y1="96" x2="364" y2="96"></line>
+                        <line x1="510" y1="80" x2="510" y2="112"></line><line x1="496" y1="96" x2="524" y2="96"></line>
+                      </g>
+                      <g fill="none" stroke="#A9873F" stroke-width="1.4">
+                        <circle cx="298" cy="64" r="11"></circle>
+                        <circle cx="350" cy="113" r="11"></circle>
+                        <circle cx="446" cy="130" r="11"></circle>
+                      </g>
+                      <path d="M309,60 L618,42" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                      <text x="624" y="38" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">THE LIST —</text>
+                      <text x="624" y="54" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">SMALL FIXES, CAUGHT EARLY</text>
+                    </svg>
+                  </sc-if>
+                  <sc-if value="{{ idea.v3 }}" hint-placeholder-val="{{ false }}">
+                    <svg viewBox="0 0 900 150" style="width:100%; height:auto; display:block;">
+                      <rect x="150" y="22" width="470" height="106" fill="none" stroke="#16305B" stroke-width="2"></rect>
+                      <path d="M310,22 L310,56 M310,90 L310,128" stroke="#16305B" stroke-width="1.5"></path>
+                      <line x1="310" y1="90" x2="344" y2="90" stroke="#16305B" stroke-width="1.2"></line>
+                      <path d="M310,56 A34,34 0 0 1 344,90" fill="none" stroke="#A9873F" stroke-width="1.1"></path>
+                      <path d="M470,22 L470,128" stroke="#A9873F" stroke-width="1.6" stroke-dasharray="7 5" opacity="0.9"></path>
+                      <g fill="none" stroke="#16305B" stroke-width="1.3">
+                        <rect x="158" y="28" width="96" height="16"></rect>
+                        <circle cx="196" cy="36" r="5"></circle>
+                        <rect x="346" y="78" width="60" height="40"></rect>
+                        <line x1="346" y1="88" x2="406" y2="88"></line>
+                        <rect x="560" y="30" width="52" height="24"></rect>
+                        <rect x="566" y="34" width="40" height="16" opacity="0.6"></rect>
+                        <ellipse cx="592" cy="76" rx="8" ry="10"></ellipse>
+                      </g>
+                      <circle cx="470" cy="62" r="2.4" fill="#A9873F"></circle>
+                      <path d="M470,62 L652,40" stroke="#A9873F" stroke-width="1" fill="none"></path>
+                      <text x="658" y="36" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">WALL COMING OUT —</text>
+                      <text x="658" y="52" font-family="Archivo, sans-serif" font-size="10.5" letter-spacing="1.8" fill="#8D8776">ROUGH-INS MOVE ONCE</text>
+                    </svg>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="padding:26px 14px 0;">
+        <div style="font-family:'Libre Caslon Text', serif; font-size:15px; line-height:1.7; color:rgba(247,244,238,.66);">Bring one of these to the first conversation — or something else entirely. <a href="#contact" style="color:#C4A055; border-bottom:1px solid rgba(196,160,85,.5);" style-hover="color:#F7F4EE;">Tell us what you&rsquo;re thinking</a>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" data-screen-label="About" style="background:#EDE7DA; padding:72px 48px;">
+  <div style="max-width:880px; margin:0 auto;">
+    <div data-reveal style="display:flex; flex-direction:column; gap:24px;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:.28em; color:#A9873F;">MEET BOB</div>
+      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.12; color:#0F1D33; text-wrap:balance;">Bob Cwenar</h2>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">Bob has been building in and around New Hope since 1995 — he runs every job himself, with a steady crew of longtime tradespeople. Multi-story custom homes, whole-house rebuilds, and plenty of single-room jobs in between.</div>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">His strength is the complicated middle of a project — multi-room design, demolition, and rebuild work with a lot of moving parts, where plumbing, electrical, and gas all have to land in the right order. As general contractor, he manages all of it on the ground.</div>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">Thirty years in means a comfortable network across the architecture and design community, and reliable sources for niche and hard-to-find materials. Most new clients arrive by referral, often from a house he worked on years earlier.</div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" data-screen-label="Contact" style="background:#0F1D33; background-image:radial-gradient(ellipse 120% 90% at 50% -20%, #16305B 0%, #0F1D33 65%); padding:72px 48px 84px; position:relative;">
+  <div style="max-width:1320px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(40px,6vw,90px); position:relative;">
+    <div data-reveal style="display:flex; flex-direction:column; gap:26px;">
+      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.12; color:#F7F4EE; text-wrap:balance;">Tell us about your project</h2>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16px; line-height:1.7; color:rgba(247,244,238,.68);">New builds, renovations, and repairs across Bucks County and the tri-state. Inquiries go directly to Bob.</div>
+      <div data-mq="contact-info" style="display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(247,244,238,.16);">
+        <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
+          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">PHONE</div>
+          <a href="tel:+12155006311" style="font-size:17px; font-weight:600; color:#F7F4EE;" style-hover="color:#C4A055;">{{ phone }}</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
+          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">EMAIL</div>
+          <a href="/cdn-cgi/l/email-protection#b2d1c5d7dcd3c0f2d3ddde9cd1dddf" style="font-size:17px; font-weight:600; color:#F7F4EE;" style-hover="color:#C4A055;"><span class="__cf_email__" data-cfemail="036074666d627143626c6f2d606c6e">[email&#160;protected]</span></a>
+        </div>
+        <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
+          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">LOCATION</div>
+          <div style="font-size:17px; font-weight:600; color:#F7F4EE;">New Hope, Pennsylvania</div>
+        </div>
+      </div>
+    </div>
+    <div data-reveal style="background:#F7F4EE; border-radius:6px; padding:44px 44px 40px; display:flex; flex-direction:column; gap:18px; box-shadow:0 34px 80px rgba(5,10,20,.4); align-self:start;">
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div data-mq="form-row" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:.22em; color:#8D8776;">NAME</label>
+              <input id="cw-f-name" type="text" placeholder="Your name" style="font-family:'Archivo', sans-serif; font-size:14.5px; color:#0F1D33; background:#FFFFFF; border:1px solid #D8CFBA; border-radius:3px; padding:13px 14px; outline:none; width:100%; min-width:0; box-sizing:border-box;" style-focus="border-color:#A9873F;">
+            </div>
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:.22em; color:#8D8776;">PHONE / EMAIL</label>
+              <input id="cw-f-reach" type="text" placeholder="How to reach you" style="font-family:'Archivo', sans-serif; font-size:14.5px; color:#0F1D33; background:#FFFFFF; border:1px solid #D8CFBA; border-radius:3px; padding:13px 14px; outline:none; width:100%; min-width:0; box-sizing:border-box;" style-focus="border-color:#A9873F;">
+            </div>
+          </div>
+          <div data-mq="form-row" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:.22em; color:#8D8776;">PROJECT TYPE</label>
+              <select id="cw-f-type" style="font-family:'Archivo', sans-serif; font-size:14.5px; color:#0F1D33; background:#FFFFFF; border:1px solid #D8CFBA; border-radius:3px; padding:13px 12px; outline:none; width:100%; min-width:0; box-sizing:border-box;">
+                <option>Ground-up build</option>
+                <option>Full-gut renovation</option>
+                <option>Kitchen or bath remodel</option>
+                <option>Repairs / smaller work</option>
+                <option>Barn / guest house / pool house</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:.22em; color:#8D8776;">TOWNSHIP</label>
+              <input id="cw-f-town" type="text" placeholder="e.g. Solebury, PA" style="font-family:'Archivo', sans-serif; font-size:14.5px; color:#0F1D33; background:#FFFFFF; border:1px solid #D8CFBA; border-radius:3px; padding:13px 14px; outline:none; width:100%; min-width:0; box-sizing:border-box;" style-focus="border-color:#A9873F;">
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:7px;">
+            <label style="font-size:10px; font-weight:700; letter-spacing:.22em; color:#8D8776;">THE PROJECT</label>
+            <textarea id="cw-f-project" rows="5" placeholder="What would you like to build or restore?" style="font-family:'Archivo', sans-serif; font-size:14.5px; color:#0F1D33; background:#FFFFFF; border:1px solid #D8CFBA; border-radius:3px; padding:13px 14px; outline:none; resize:vertical; width:100%; min-width:0; box-sizing:border-box;" style-focus="border-color:#A9873F;"></textarea>
+          </div>
+          <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+            <button type="button" onClick="{{ submitForm }}" style="font-family:'Archivo', sans-serif; background:#A9873F; color:#0F1D33; font-size:12.5px; font-weight:700; letter-spacing:.18em; padding:17px 30px; border:none; border-radius:3px; cursor:pointer; transition:background .2s ease;" style-hover="background:#C4A055;">REQUEST A SITE VISIT</button>
+            <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12px; font-weight:600; letter-spacing:.06em; color:#A03A2C;">Please include your name and a way to reach you.</div>
+            </sc-if>
+          </div>
+          <div style="font-size:11.5px; color:#8D8776; line-height:1.6;">Or call directly — {{ phone }}.</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; align-items:flex-start; gap:18px; padding:26px 6px 16px; animation:cwrise .5s ease both;">
+          
+          <div style="font-family:'Libre Caslon Display', serif; font-size:32px; line-height:1.2; color:#0F1D33;">Thank you{{ sentName }}.</div>
+          <div style="font-family:'Libre Caslon Text', serif; font-size:16px; line-height:1.7; color:#4A4638;">Your note went to Bob. He typically replies within a business day.</div>
+          <div style="display:flex; align-items:center; gap:12px; border-top:1px solid #D9D2C2; padding-top:16px; width:100%;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:.2em; color:#8D8776;">DIRECT LINE</div>
+            <div style="font-size:14.5px; font-weight:700; color:#0F1D33;">{{ phone }}</div>
+            <div style="flex:1;"></div>
+            <button type="button" onClick="{{ resetForm }}" style="font-family:'Archivo', sans-serif; background:none; border:none; cursor:pointer; font-size:11.5px; font-weight:700; letter-spacing:.16em; color:#A9873F; padding:0;" style-hover="color:#16305B;">SEND ANOTHER →</button>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+<!-- Netlify Forms detection (build-time only, never visible) -->
+<form name="project-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden style="display:none;">
+  <input type="text" name="name">
+  <input type="text" name="contact">
+  <input type="text" name="project-type">
+  <input type="text" name="township">
+  <textarea name="message"></textarea>
+  <input type="text" name="bot-field">
+</form>
+
+<!-- FOOTER -->
+<div data-screen-label="Footer" style="background:#0B1628; padding:40px 48px 22px; border-top:1px solid rgba(247,244,238,.1);">
+  <div style="max-width:1320px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
+    <div data-mq="photo-panel" style="border:1px solid rgba(247,244,238,.16); border-radius:6px; padding:22px 28px; display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1; min-width:300px;">
+        <div style="font-size:10.5px; font-weight:700; letter-spacing:.28em; color:#C4A055;">TO OUR PAST CLIENTS</div>
+        <div style="font-family:'Libre Caslon Display', serif; font-size:30px; line-height:1.2; color:#F7F4EE; text-wrap:balance;">Did we build your house?</div>
+        <div style="font-family:'Libre Caslon Text', serif; font-size:15px; line-height:1.7; color:rgba(247,244,238,.66); max-width:56ch; text-wrap:pretty;">Thirty years of projects — and not nearly enough pictures of them. If you live in one, a phone snapshot of how it looks today would mean a lot. We&rsquo;ll do the rest.</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; align-items:stretch;">
+        <a href="/cdn-cgi/l/email-protection#92f1e5f7fcf3e0d2f3fdfebcf1fdffade1e7f0f8f7f1e6afc2e0fdf8f7f1e6b7a0a2e2fafde6fde1b7a0a2b7d7a0b7aaa2b7aba6b7a0a2fde7e0b7a0a2fafde7e1f7b4f3ffe2a9f0fdf6ebafdafbb7a0a2d0fdf0b7a0a2b7d7a0b7aaa2b7aba6b7a0a2e5f7b7a0a5e0f7b7a0a2f3e6b7a0a2b7a7d0ebfde7e0b7a0a2f3f6f6e0f7e1e1b7a7d6bcb7a0a2daf7e0f7b7a0a5e1b7a0a2fafde5b7a0a2e6faf7b7a0a2e2fef3f1f7b7a0a2fefdfdf9e1b7a0a2e6fdf6f3ebbc" style="background:#A9873F; color:#0F1D33; text-align:center; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:15px 28px; border-radius:3px; transition:background .2s ease;" style-hover="background:#C4A055; color:#0F1D33;">EMAIL YOUR PHOTOS</a>
+        <a href="sms:+12155006311?&amp;body=Hi%20Bob%20%E2%80%94%20photos%20of%20our%20Cwenar%20project%3A" style="border:1px solid rgba(247,244,238,.35); color:#F7F4EE; text-align:center; font-size:11.5px; font-weight:600; letter-spacing:.16em; padding:14px 28px; border-radius:3px; transition:border-color .2s ease;" style-hover="border-color:#F7F4EE; color:#FFFFFF;">TEXT THEM TO {{ phone }}</a>
+        <button type="button" onClick="{{ copyEmail }}" style="font-family:'Archivo', sans-serif; background:none; border:none; cursor:pointer; font-size:10.5px; font-weight:700; letter-spacing:.2em; color:#8FA9CB; padding:2px 0 0; transition:color .2s ease;" style-hover="color:#FFFFFF;">{{ copyLabel }}</button>
+      </div>
+    </div>
+    <div data-mq="footer-brand" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <img src="assets/cwenar-logo.png" alt="Cwenar Construction" style="width:148px; height:auto;">
+      <div style="display:flex; align-items:center; gap:30px;">
+        <a href="#work" style="font-size:11.5px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.6);" style-hover="color:#FFFFFF;">WORK</a>
+        <a href="#ideas" style="font-size:11.5px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.6);" style-hover="color:#FFFFFF;">IDEAS</a>
+        <a href="#about" style="font-size:11.5px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.6);" style-hover="color:#FFFFFF;">ABOUT</a>
+        <a href="#contact" style="font-size:11.5px; font-weight:600; letter-spacing:.16em; color:rgba(247,244,238,.6);" style-hover="color:#FFFFFF;">CONTACT</a>
+      </div>
+    </div>
+    <div data-mq="footer-legal" style="display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid rgba(247,244,238,.1); padding-top:13px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        
+        
+        <div style="font-size:11px; letter-spacing:.2em; color:rgba(247,244,238,.45);">© 2026 CWENAR CONSTRUCTION · NEW HOPE, PA</div>
+      </div>
+      <div style="font-size:11px; letter-spacing:.2em; color:rgba(247,244,238,.45);">LICENSED &amp; INSURED · PA + NJ</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;(215) 500-6311&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Drawings&quot;},&quot;logoDock&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false };
+
+  componentDidMount() {
+    this._measured = null;
+    this._fitWord = () => {
+      const w = document.getElementById('nav-word');
+      if (w) w.style.visibility = (w.scrollWidth > w.clientWidth + 2) ? 'hidden' : 'visible';
+    };
+    setTimeout(this._fitWord, 50);
+    setTimeout(this._fitWord, 400);
+    setTimeout(this._fitWord, 1200);
+    const measure = () => {
+      const fly = document.getElementById('fly-logo');
+      const stat = document.getElementById('hero-logo-static');
+      const word = document.getElementById('nav-word');
+      if (!fly || !stat || !word) return;
+      const sr = stat.getBoundingClientRect();
+      if (sr.width < 10) return;
+      const wr = word.getBoundingClientRect();
+      const dockW = 112;
+      const dockH = dockW * (sr.height / sr.width);
+      this._measured = {
+        heroTop: sr.top + window.scrollY,
+        heroLeft: sr.left,
+        heroW: sr.width,
+        dockTop: (78 - dockH) / 2,
+        dockLeft: wr.left,
+        dockW: dockW
+      };
+      fly.style.width = sr.width + 'px';
+      // hide the corner label if it doesn't fit (clipped text looks broken)
+      word.style.visibility = (word.scrollWidth > word.clientWidth + 2) ? 'hidden' : 'visible';
+      this._apply();
+    };
+    this._measure = measure;
+    this._apply = () => {
+      const fly = document.getElementById('fly-logo');
+      const stat = document.getElementById('hero-logo-static');
+      const word = document.getElementById('nav-word');
+      const nav = document.getElementById('cw-nav');
+
+      const y = window.scrollY;
+      const dockD = this._measured ? Math.max(1, this._measured.heroTop - this._measured.dockTop) : 400;
+      const collapsed = y > dockD * 0.85;
+      const links = document.getElementById('nav-links');
+      const mwrap = document.getElementById('nav-menu-wrap');
+      if (links) {
+        links.style.opacity = collapsed ? '0' : '1';
+        links.style.transform = collapsed ? 'translateY(-12px)' : 'translateY(0px)';
+        links.style.pointerEvents = collapsed ? 'none' : 'auto';
+      }
+      if (mwrap) {
+        mwrap.style.opacity = collapsed ? '1' : '0';
+        mwrap.style.pointerEvents = collapsed ? 'auto' : 'none';
+      }
+      const flyEl = document.getElementById('fly-logo');
+      if (flyEl) flyEl.style.pointerEvents = collapsed ? 'auto' : 'none';
+      if (!collapsed && this.state.menuOpen) this.setState({ menuOpen: false });
+
+      const m = this._measured;
+      const dockOn = (this.props.logoDock ?? true);
+      if (!m || !fly || !stat || !word) return;
+      if (!dockOn) {
+        fly.style.opacity = '0';
+        stat.style.visibility = 'visible';
+        word.style.opacity = '1';
+        return;
+      }
+      const D = Math.max(1, m.heroTop - m.dockTop);
+      const p = Math.min(1, Math.max(0, y / D));
+      const e = 1 - Math.pow(1 - p, 3);
+      const ty = Math.max(m.heroTop - y, m.dockTop);
+      const tx = m.heroLeft + (m.dockLeft - m.heroLeft) * e;
+      const s = (m.heroW + (m.dockW - m.heroW) * e) / m.heroW;
+      const foot = document.querySelector('[data-screen-label="Footer"]');
+      const atFooter = foot ? foot.getBoundingClientRect().top < window.innerHeight - 60 : false;
+      fly.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+      fly.style.opacity = atFooter ? '0' : '1';
+      fly.style.filter = p > 0.5 ? 'drop-shadow(0 4px 10px rgba(0,0,0,.4))' : 'drop-shadow(0 18px 40px rgba(0,0,0,.5))';
+      stat.style.visibility = 'hidden';
+      const fade = p < 0.6 ? 0 : (p - 0.6) / 0.4;
+      word.style.opacity = String(1 - fade);
+    };
+    this._onScroll = () => { if (!this._raf) { this._raf = requestAnimationFrame(() => { this._raf = null; if (!this._measured) this._measure(); this._apply(); }); } };
+    this._onResize = () => { measure(); this._fitWord(); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onDocClick = (ev) => {
+      if (!this.state.menuOpen) return;
+      const f = document.getElementById('fly-logo');
+      if (f && (ev.target === f || f.contains(ev.target))) return;
+      const w = document.getElementById('nav-menu-wrap');
+      if (w && !w.contains(ev.target)) this.setState({ menuOpen: false });
+    };
+    document.addEventListener('click', this._onDocClick);
+    window.addEventListener('resize', this._onResize);
+    const stat = document.getElementById('hero-logo-static');
+    if (stat && !stat.complete) stat.addEventListener('load', measure);
+    setTimeout(measure, 80);
+    setTimeout(measure, 600);
+    setTimeout(() => {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'translateY(0px)';
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .85s cubic-bezier(.2,.6,.2,1), transform .85s cubic-bezier(.2,.6,.2,1)';
+        el.style.transitionDelay = ((i % 2) * 90) + 'ms';
+        io.observe(el);
+      });
+      this._io = io;
+    }, 60);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('click', this._onDocClick);
+    window.removeEventListener('resize', this._onResize);
+    if (this._io) this._io.disconnect();
+    if (this._raf) cancelAnimationFrame(this._raf);
+  }
+
+  renderVals() {
+    const t = this.state.tab;
+    const ideaList = [
+      { tag: 'RENOVATION', tagColor: '#8FA9CB', title: 'Opening up the kitchen', vigLabel: 'REAR ELEVATION \u2014 BACK WALL OPENED UP',
+        body: 'Take out the back wall, set a steel beam overhead, and hang glass doors below \u2014 the kitchen gets bigger, brighter, and connected to the yard.',
+        c1: 'If the wall is load-bearing \u2014 it usually is \u2014 that sets the budget.',
+        c2: 'Threshold and sill details matter more day to day than the door brand.',
+        c3: 'The right moment to fix the mudroom and back entry, too.' },
+      { tag: 'RENOVATION', tagColor: '#8FA9CB', title: 'A first-floor bedroom and bath', vigLabel: 'PLAN \u2014 FIRST-FLOOR BEDROOM & BATH',
+        body: 'Sometimes an addition, more often a reworked wing \u2014 a full bedroom and bath on the first floor, so the stairs stop being the problem.',
+        c1: 'Existing plumbing usually decides the location.',
+        c2: 'Wide doorways and a curbless shower cost almost nothing mid-build.',
+        c3: 'Houses here with one sell noticeably faster.' },
+      { tag: 'REPAIR', tagColor: '#C4A055', title: 'Knocking out the repair list', vigLabel: 'ELEVATION \u2014 SMALL FIXES, CAUGHT EARLY',
+        body: 'Sticking doors, soft porch boards, a leak that keeps coming back \u2014 small jobs, knocked out in a visit or two by the same crew that does the big work.',
+        c1: 'Water is behind most of it \u2014 fix the source, not the stain.',
+        c2: 'One scheduled visit beats five separate service calls.',
+        c3: 'Fixes done on time keep the big renovation a choice, not an emergency.' },
+      { tag: 'RENOVATION', tagColor: '#8FA9CB', title: 'Several rooms at once', vigLabel: 'PLAN \u2014 THREE ROOMS, ONE JOB',
+        body: 'Kitchen, bath, and the rooms between them, done as one job instead of three \u2014 one permit set, one schedule, and plumbing, electric, and gas sequenced so the trades aren\u2019t in each other\u2019s way.',
+        c1: 'One mobilization is cheaper than three separate projects.',
+        c2: 'A dust wall and a working bathroom get planned before demo starts.',
+        c3: 'Rough-ins happen once \u2014 walls close up once.' }
+    ];
+    const ideas = ideaList.map((d, i) => ({
+      tag: d.tag, tagColor: d.tagColor, title: d.title,
+      body: d.body, c1: d.c1, c2: d.c2, c3: d.c3,
+      gridRows: this.state.openIdea === i ? '1fr' : '0fr',
+      markRot: this.state.openIdea === i ? 'rotate(45deg)' : 'rotate(0deg)',
+      contentOpacity: this.state.openIdea === i ? 1 : 0,
+      contentShift: this.state.openIdea === i ? '0px' : '10px',
+      bg: this.state.openIdea === i ? 'rgba(247,244,238,.04)' : 'transparent',
+      v0: i === 0, v1: i === 1, v2: i === 2, v3: i === 3,
+      vigLabel: d.vigLabel,
+      toggle: () => this.setState(s => ({ openIdea: s.openIdea === i ? -1 : i }))
+    }));
+    const tabStyle = (i) => ({
+      border: t === i ? '#0F1D33' : '#DED6C3',
+      bg: t === i ? '#FFFFFF' : 'transparent',
+      num: t === i ? '#A9873F' : '#C9BEA0',
+      shift: t === i ? 'translateX(8px)' : 'translateX(0px)'
+    });
+    const s0 = tabStyle(0), s1 = tabStyle(1), s2 = tabStyle(2);
+    return {
+      phone: this.props.phone ?? '(215) 000-0000',
+      annoOpacity: (this.props.showAnnotations ?? true) ? 1 : 0,
+      isTab0: t === 0, isTab1: t === 1, isTab2: t === 2,
+      pickTab0: () => this.setState({ tab: 0 }),
+      pickTab1: () => this.setState({ tab: 1 }),
+      pickTab2: () => this.setState({ tab: 2 }),
+      tab0Border: s0.border, tab0Bg: s0.bg, tab0Num: s0.num, tab0Shift: s0.shift,
+      tab1Border: s1.border, tab1Bg: s1.bg, tab1Num: s1.num, tab1Shift: s1.shift,
+      tab2Border: s2.border, tab2Bg: s2.bg, tab2Num: s2.num, tab2Shift: s2.shift,
+      ideas: ideas,
+      menuOpen: this.state.menuOpen,
+      copyLabel: this.state.emailCopied ? 'COPIED \u2014 THANK YOU' : 'OR COPY THE EMAIL ADDRESS',
+      copyEmail: () => {
+        try { navigator.clipboard.writeText('cwenar@aol.com'); } catch (e) {}
+        this.setState({ emailCopied: true });
+        clearTimeout(this._copyT);
+        this._copyT = setTimeout(() => this.setState({ emailCopied: false }), 2400);
+      },
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      notSent: !this.state.sent,
+      sent: this.state.sent,
+      showErr: this.state.err,
+      sentName: this.state.sentName,
+      submitForm: () => {
+        const name = (document.getElementById('cw-f-name') || {}).value || '';
+        const reach = (document.getElementById('cw-f-reach') || {}).value || '';
+        const gv = (id) => (document.getElementById(id) || {}).value || '';
+        if (name.trim() && reach.trim()) {
+          const body = new URLSearchParams({
+            'form-name': 'project-inquiry',
+            'name': name,
+            'contact': reach,
+            'project-type': gv('cw-f-type'),
+            'township': gv('cw-f-town'),
+            'message': gv('cw-f-project'),
+            'bot-field': ''
+          }).toString();
+          fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body }).catch(() => {});
+        }
+        if (!name.trim() || !reach.trim()) { this.setState({ err: true }); return; }
+        const first = name.trim().split(/\s+/)[0];
+        this.setState({ sent: true, err: false, sentName: ', ' + first });
+      },
+      resetForm: () => this.setState({ sent: false, err: false, sentName: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>
