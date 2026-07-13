@@ -77,7 +77,8 @@
       [data-mq="who-side"] { display: none !important; }
       [data-mq="who-head"] { font-size: 28px !important; line-height: 1.26 !important; }
       #who [data-reveal] > div:nth-child(4) { padding: 26px 2px 24px !important; gap: 15px !important; }
-      #who [data-reveal] > div:nth-child(2) { justify-content: center !important; }
+      #who [data-reveal] > div:nth-child(2) { justify-content: center !important; flex-direction: column !important; gap: 9px !important; padding: 14px 2px 13px !important; }
+      [data-mq="who-mobile-slug"] { display: block !important; }
       [data-mq="who-deck"] > div:first-child, [data-mq="who-deck"] > div:last-child { display: none !important; }
       [data-mq="who-deck"] { justify-content: center !important; }
       [data-mq="who-deck"] > div:nth-child(2) { font-size: 15px !important; max-width: 100% !important; flex: 0 1 auto !important; min-width: 0 !important; }
@@ -94,10 +95,9 @@
       [data-mq="work-tabs"] > button > div:nth-child(2) { display: none !important; }
       /* starting points */
       #ideas { padding: 44px 20px 52px !important; }
-      [data-mq="idea-row"] { grid-template-columns: 38px 1fr 26px !important; gap: 14px !important; padding: 19px 4px !important; align-items: center !important; }
-      [data-mq="idea-num"] { display: block !important; }
-      [data-mq="idea-row"] > div:nth-child(2) { display: none !important; }
-      [data-mq="idea-row"] > div:nth-child(3) { font-size: 19px !important; line-height: 1.3 !important; }
+      [data-mq="idea-row"] { grid-template-columns: 1fr 26px !important; gap: 12px !important; padding: 17px 4px !important; align-items: center !important; }
+      [data-mq="idea-row"] > div:first-child { display: none !important; }
+      [data-mq="idea-row"] > div:nth-child(2) { font-size: 19px !important; line-height: 1.3 !important; }
       [data-mq="idea-detail"] { padding: 0 0 28px !important; }
       [data-mq="idea-card"] { padding: 20px 16px 16px !important; gap: 18px !important; }
       [data-mq="idea-grid"] { grid-template-columns: 1fr !important; gap: 20px !important; }
@@ -217,6 +217,7 @@
         <div style="width:5px; height:5px; background:#A9873F; transform:rotate(45deg); flex:none;"></div>
       </div>
       <div data-mq="who-side" style="font-size:10px; font-weight:600; letter-spacing:.28em; color:#8D8776; flex:1; text-align:right;">NEW HOPE, PENNSYLVANIA</div>
+      <div data-mq="who-mobile-slug" style="display:none; font-size:9.5px; font-weight:600; letter-spacing:.26em; color:#8D8776; text-align:center;">EST. 1995 — NEW HOPE, PENNSYLVANIA</div>
     </div>
     <div style="border-top:1px solid rgba(15,29,51,.35);"></div>
     <div style="padding:clamp(36px,5vw,54px) 12px clamp(32px,4.5vw,46px); display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px;">
@@ -528,9 +529,8 @@
       <sc-for list="{{ ideas }}" as="idea" hint-placeholder-count="4">
         <div style="border-bottom:1px solid rgba(247,244,238,.16);">
           <button type="button" data-mq="idea-row" onClick="{{ idea.toggle }}" style="font-family:'Archivo', sans-serif; display:grid; grid-template-columns:110px 1fr 44px; gap:24px; align-items:baseline; width:100%; text-align:left; padding:30px 14px; background:{{ idea.bg }}; border:none; cursor:pointer; transition:background .25s ease;" style-hover="background:rgba(247,244,238,.055);">
-            <div data-mq="idea-num" style="display:none; font-family:'Libre Caslon Display', serif; font-size:22px; line-height:1; color:#C4A055;">{{ idea.num }}</div>
             <div style="font-size:10px; font-weight:700; letter-spacing:.22em; color:{{ idea.tagColor }};">{{ idea.tag }}</div>
-            <div style="font-family:'Libre Caslon Display', serif; font-size:30px; line-height:1.25; color:#F7F4EE;">{{ idea.title }}</div>
+            <div style="font-family:'Libre Caslon Display', serif; font-size:30px; line-height:1.25; color:{{ idea.titleColor }}; transition:color .3s ease;">{{ idea.title }}</div>
             <div style="font-family:'Libre Caslon Display', serif; font-size:24px; line-height:1; color:#C4A055; text-align:center; align-self:center; transform:{{ idea.markRot }}; transition:transform .45s cubic-bezier(.2,.6,.2,1);">+</div>
           </button>
           <div style="display:grid; grid-template-rows:{{ idea.gridRows }}; transition:grid-template-rows .55s cubic-bezier(.25,.6,.2,1);">
@@ -921,6 +921,8 @@ class Component extends DCLogic {
     if (stat && !stat.complete) stat.addEventListener('load', measure);
     setTimeout(measure, 80);
     setTimeout(measure, 600);
+    // mobile: lead Starting points with the first entry open (featured-card feel)
+    if (window.innerWidth <= 760 && this.state.openIdea === -1) this.setState({ openIdea: 0 });
     setTimeout(() => {
       const els = Array.from(document.querySelectorAll('[data-reveal]'));
       const io = new IntersectionObserver((entries) => {
@@ -976,7 +978,7 @@ class Component extends DCLogic {
         c3: 'Rough-ins happen once \u2014 walls close up once.' }
     ];
     const ideas = ideaList.map((d, i) => ({
-      num: '0' + (i + 1),
+      titleColor: this.state.openIdea === i ? '#C4A055' : '#F7F4EE',
       tag: d.tag, tagColor: d.tagColor, title: d.title,
       body: d.body, c1: d.c1, c2: d.c2, c3: d.c3,
       gridRows: this.state.openIdea === i ? '1fr' : '0fr',
