@@ -30,7 +30,9 @@
     @media (max-width: 760px) {
       /* nav */
       #cw-nav > div:first-of-type { padding: 0 14px 0 10px !important; gap: 12px !important; height: 64px !important; }
-      #cw-nav a[href="#contact"] { padding: 10px 14px !important; font-size: 10.5px !important; }
+      [data-mq="nav-contact"] { display: none !important; }
+      #cw-nav a[href^="tel"] { width: 48px !important; height: 48px !important; color: #C4A055 !important; }
+      #cw-nav a[href^="tel"] svg { width: 24px !important; height: 24px !important; }
       [data-mq="nav-div"] { display: none !important; }
       #nav-menu-wrap { top: 60px !important; left: 10px !important; }
       /* hero */
@@ -129,7 +131,7 @@
       <a href="tel:+12155006311" aria-label="Call Cwenar Construction" title="{{ phone }}" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; flex:none; color:rgba(247,244,238,.85); transition:color .2s ease;" style-hover="color:#C4A055;">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       </a>
-      <a href="#contact" style="background:#A9873F; color:#0F1D33; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:12px 24px; border-radius:3px; transition:background .2s ease; white-space:nowrap;" style-hover="background:#C4A055; color:#0F1D33;">CONTACT</a>
+      <a data-mq="nav-contact" href="#contact" style="background:#A9873F; color:#0F1D33; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:12px 24px; border-radius:3px; transition:background .2s ease; white-space:nowrap;" style-hover="background:#C4A055; color:#0F1D33;">CONTACT</a>
     </div>
     <div id="nav-menu-wrap" style="position:absolute; left:clamp(20px,4vw,48px); top:72px; opacity:0; pointer-events:none; transition:opacity .45s ease;">
       <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
@@ -652,15 +654,11 @@
   <div style="max-width:1320px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(40px,6vw,90px); position:relative;">
     <div data-reveal style="display:flex; flex-direction:column; gap:26px;">
       <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.12; color:#F7F4EE; text-wrap:balance;">Tell us about your project</h2>
-      <div style="font-family:'Libre Caslon Text', serif; font-size:16px; line-height:1.7; color:rgba(247,244,238,.68);">New builds, renovations, and repairs across Bucks County and the tri-state. Inquiries go directly to Bob.</div>
+      <div style="font-family:'Libre Caslon Text', serif; font-size:16px; line-height:1.7; color:rgba(247,244,238,.68);">New builds, renovations, and repairs across Bucks County and the tri-state. Call, text, or send the form — inquiries go directly to Bob.</div>
       <div data-mq="contact-info" style="display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(247,244,238,.16);">
         <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
-          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">PHONE</div>
+          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">CALL OR TEXT</div>
           <a href="tel:+12155006311" style="font-size:17px; font-weight:600; color:#F7F4EE;" style-hover="color:#C4A055;">{{ phone }}</a>
-        </div>
-        <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
-          <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">EMAIL</div>
-          <a href="/cdn-cgi/l/email-protection#c1a2b6a4afa0b381a0aeadefa2aeac" style="font-size:17px; font-weight:600; color:#F7F4EE;" style-hover="color:#C4A055;"><span class="__cf_email__" data-cfemail="ea899d8f848b98aa8b8586c4898587">[email&#160;protected]</span></a>
         </div>
         <div style="display:flex; align-items:center; gap:20px; padding:20px 0; border-bottom:1px solid rgba(247,244,238,.16);">
           <div style="font-size:10px; font-weight:700; letter-spacing:.26em; color:#8FA9CB; width:110px;">LOCATION</div>
@@ -708,7 +706,7 @@
               <div style="font-size:12px; font-weight:600; letter-spacing:.06em; color:#A03A2C;">Please include your name and a way to reach you.</div>
             </sc-if>
           </div>
-          <div style="font-size:11.5px; color:#8D8776; line-height:1.6;">Or call directly — {{ phone }}.</div>
+          <div style="font-size:11.5px; color:#8D8776; line-height:1.6;">Or call or text — {{ phone }}. Whatever&rsquo;s easiest.</div>
         </div>
       </sc-if>
       <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
@@ -748,9 +746,8 @@
         <div style="font-family:'Libre Caslon Text', serif; font-size:15px; line-height:1.7; color:rgba(247,244,238,.66); max-width:56ch; text-wrap:pretty;">Thirty years of projects — and not nearly enough pictures of them. If you live in one, a phone snapshot of how it looks today would mean a lot. We&rsquo;ll do the rest.</div>
       </div>
       <div style="display:flex; flex-direction:column; gap:12px; align-items:stretch;">
-        <a href="/cdn-cgi/l/email-protection#afccd8cac1ceddefcec0c381ccc0c290dcdacdc5caccdb92ffddc0c5caccdb8a9d9fdfc7c0dbc0dc8a9d9f8aea9d8a979f8a969b8a9d9fc0dadd8a9d9fc7c0dadcca89cec2df94cdc0cbd692e7c68a9d9fedc0cd8a9d9f8aea9d8a979f8a969b8a9d9fd8ca8a9d98ddca8a9d9fcedb8a9d9f8a9aedd6c0dadd8a9d9fcecbcbddcadcdc8a9aeb818a9d9fe7caddca8a9d98dc8a9d9fc7c0d88a9d9fdbc7ca8a9d9fdfc3ceccca8a9d9fc3c0c0c4dc8a9d9fdbc0cbced681" style="background:#A9873F; color:#0F1D33; text-align:center; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:15px 28px; border-radius:3px; transition:background .2s ease;" style-hover="background:#C4A055; color:#0F1D33;">EMAIL YOUR PHOTOS</a>
-        <a href="sms:+12155006311?&amp;body=Hi%20Bob%20%E2%80%94%20photos%20of%20our%20Cwenar%20project%3A" style="border:1px solid rgba(247,244,238,.35); color:#F7F4EE; text-align:center; font-size:11.5px; font-weight:600; letter-spacing:.16em; padding:14px 28px; border-radius:3px; transition:border-color .2s ease;" style-hover="border-color:#F7F4EE; color:#FFFFFF;">TEXT THEM TO {{ phone }}</a>
-        <button type="button" onClick="{{ copyEmail }}" style="font-family:'Archivo', sans-serif; background:none; border:none; cursor:pointer; font-size:10.5px; font-weight:700; letter-spacing:.2em; color:#8FA9CB; padding:2px 0 0; transition:color .2s ease;" style-hover="color:#FFFFFF;">{{ copyLabel }}</button>
+        <a href="sms:+12155006311?&amp;body=Hi%20Bob%20%E2%80%94%20photos%20of%20our%20Cwenar%20project%3A" style="background:#A9873F; color:#0F1D33; text-align:center; font-size:11.5px; font-weight:700; letter-spacing:.16em; padding:15px 28px; border-radius:3px; transition:background .2s ease;" style-hover="background:#C4A055; color:#0F1D33;">TEXT THEM TO {{ phone }}</a>
+        <a href="tel:+12155006311" style="border:1px solid rgba(247,244,238,.35); color:#F7F4EE; text-align:center; font-size:11.5px; font-weight:600; letter-spacing:.16em; padding:14px 28px; border-radius:3px; transition:border-color .2s ease;" style-hover="border-color:#F7F4EE; color:#FFFFFF;">OR JUST CALL</a>
       </div>
     </div>
     <div data-mq="footer-brand" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
@@ -773,7 +770,7 @@
   </div>
 </div>
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;(215) 500-6311&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Drawings&quot;},&quot;logoDock&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;(215) 500-6311&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Drawings&quot;},&quot;logoDock&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
   state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false };
 
@@ -961,13 +958,7 @@ class Component extends DCLogic {
       tab2Border: s2.border, tab2Bg: s2.bg, tab2Num: s2.num, tab2Shift: s2.shift,
       ideas: ideas,
       menuOpen: this.state.menuOpen,
-      copyLabel: this.state.emailCopied ? 'COPIED \u2014 THANK YOU' : 'OR COPY THE EMAIL ADDRESS',
-      copyEmail: () => {
-        try { navigator.clipboard.writeText('cwenar@aol.com'); } catch (e) {}
-        this.setState({ emailCopied: true });
-        clearTimeout(this._copyT);
-        this._copyT = setTimeout(() => this.setState({ emailCopied: false }), 2400);
-      },
+
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
       notSent: !this.state.sent,
