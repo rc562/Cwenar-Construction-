@@ -93,6 +93,8 @@
       [data-mq="work-tabs"] > button > div:first-child > div:first-child { font-size: 11px !important; letter-spacing: .14em !important; white-space: nowrap; }
       [data-mq="work-tabs"] > button > div:first-child > div:nth-child(2) { display: none !important; }
       [data-mq="work-tabs"] > button > div:nth-child(2) { display: none !important; }
+      [data-mq="about-grid"] { flex-direction: column !important; gap: 26px !important; }
+      [data-mq="about-photo"] { flex: none !important; width: min(78%, 300px) !important; margin: 0 auto !important; }
       /* from the field */
       #field { padding: 44px 0 50px !important; }
       #field [data-mq="field-head"] { padding: 0 20px !important; gap: 12px !important; }
@@ -777,10 +779,15 @@
 
 <!-- ABOUT -->
 <div id="about" data-screen-label="About" style="background:#EDE7DA; padding:72px 48px;">
-  <div style="max-width:880px; margin:0 auto;">
-    <div data-reveal style="display:flex; flex-direction:column; gap:24px;">
+  <div style="max-width:1180px; margin:0 auto;">
+    <div data-reveal data-mq="about-grid" style="display:flex; gap:clamp(40px,6vw,76px); align-items:stretch;">
+      <div data-mq="about-photo" style="flex:0 0 clamp(320px,34%,420px); position:relative; margin-top:8px; display:flex;">
+        <div style="position:absolute; top:14px; left:14px; right:-14px; bottom:-14px; border:1px solid #C9BEA0; pointer-events:none;"></div>
+        <img src="assets/bob-headshot.jpg" alt="Bob Cwenar, Jr., general contractor" style="position:relative; display:block; width:100%; height:100%; min-height:460px; object-fit:cover; object-position:top; box-shadow:0 18px 40px rgba(15,29,51,.18);">
+      </div>
+    <div style="display:flex; flex-direction:column; gap:24px; flex:1; min-width:0;">
       <div style="font-size:11px; font-weight:700; letter-spacing:.28em; color:#A9873F;">MEET BOB</div>
-      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.12; color:#0F1D33; text-wrap:balance;">Bob Cwenar</h2>
+      <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.12; color:#0F1D33; text-wrap:balance;">Bob Cwenar, Jr.</h2>
       <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">Bob has been building in and around New Hope since 1995 — he runs every job himself, with a steady crew of longtime tradespeople. Multi-story custom homes, whole-house rebuilds, and plenty of single-room jobs in between.</div>
       <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">His strength is the complicated middle of a project — multi-room design, demolition, and rebuild work with a lot of moving parts, where plumbing, electrical, and gas all have to land in the right order. As general contractor, he manages all of it on the ground.</div>
       <div style="font-family:'Libre Caslon Text', serif; font-size:16.5px; line-height:1.75; color:#4A4638; text-wrap:pretty;">That time in the field adds up to a comfortable network across the architecture and design community, and reliable sources for niche and hard-to-find materials. Most new clients arrive by referral, often from a house he worked on years earlier.</div>
@@ -794,6 +801,7 @@
         <div style="font-family:'Libre Caslon Text', serif; font-style:italic; font-size:16px; line-height:1.65; color:#6B6350; text-wrap:pretty;">Builder, inspector, Realtor — he knows the DNA of a house, and what it means to own one.</div>
       </div>
 
+    </div>
     </div>
   </div>
 </div>
