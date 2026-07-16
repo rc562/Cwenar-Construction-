@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -93,6 +93,13 @@
       [data-mq="work-tabs"] > button > div:first-child > div:first-child { font-size: 11px !important; letter-spacing: .14em !important; white-space: nowrap; }
       [data-mq="work-tabs"] > button > div:first-child > div:nth-child(2) { display: none !important; }
       [data-mq="work-tabs"] > button > div:nth-child(2) { display: none !important; }
+      /* from the field */
+      #field { padding: 44px 0 50px !important; }
+      #field [data-mq="field-head"] { padding: 0 20px !important; gap: 12px !important; }
+      [data-mq="field-strip"] { gap: 14px !important; padding: 8px 20px 22px !important; }
+      [data-mq="field-strip"] > figure { width: 68vw !important; }
+      [data-mq="field-arrows"] { display: none !important; }
+      [data-mq="field-bar"] { margin: 0 20px !important; }
       /* starting points */
       #ideas { padding: 44px 20px 52px !important; }
       [data-mq="idea-row"] { grid-template-columns: 1fr 26px !important; gap: 12px !important; padding: 17px 4px !important; align-items: center !important; }
@@ -123,6 +130,8 @@
       [data-mq="footer-brand"] > div { justify-content: center !important; flex-wrap: wrap !important; gap: 12px 18px !important; }
       [data-mq="footer-legal"] { flex-direction: column !important; align-items: center !important; gap: 6px !important; text-align: center; }
     }
+    [data-mq="field-strip"] { scrollbar-width: none; }
+    [data-mq="field-strip"]::-webkit-scrollbar { display: none; }
   </style>
 </helmet>
 
@@ -519,6 +528,86 @@
   </div>
 </div>
 
+<!-- FROM THE FIELD -->
+<div id="field" data-screen-label="From the field" style="background:#EDE7DA; padding:58px 48px 62px; overflow:hidden;">
+  <div style="max-width:1320px; margin:0 auto; display:flex; flex-direction:column; gap:26px;">
+    <div data-mq="field-head" data-reveal style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:.28em; color:#A9873F;">FROM THE FIELD</div>
+        <h2 style="margin:0; font-family:'Libre Caslon Display', serif; font-weight:400; font-size:50px; line-height:1.1; color:#0F1D33; text-wrap:balance;">Shots from the job</h2>
+      </div>
+      <div style="display:flex; align-items:flex-end; gap:28px;">
+        <div style="font-family:'Libre Caslon Text', serif; font-size:15.5px; line-height:1.7; color:#4A4638; max-width:400px;">Phone shots from active jobs — taken between tasks, not staged for a brochure. This is what the work looks like while it’s happening.</div>
+        <div data-mq="field-arrows" style="display:flex; gap:10px; flex-shrink:0;">
+          <button onClick="{{ fieldPrev }}" aria-label="Scroll photos back" style="width:46px; height:46px; border-radius:999px; border:1px solid #C9BEA0; background:transparent; color:#0F1D33; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .18s ease;" style-hover="background:#0F1D33; color:#F7F4EE; border-color:#0F1D33;">&#8592;</button>
+          <button onClick="{{ fieldNext }}" aria-label="Scroll photos forward" style="width:46px; height:46px; border-radius:999px; border:1px solid #C9BEA0; background:transparent; color:#0F1D33; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .18s ease;" style-hover="background:#0F1D33; color:#F7F4EE; border-color:#0F1D33;">&#8594;</button>
+        </div>
+      </div>
+    </div>
+    <div data-reveal>
+      <div data-mq="field-strip" ref="{{ fieldStripRef }}" onScroll="{{ fieldScroll }}" style="display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; padding:12px 6px 26px; -webkit-overflow-scrolling:touch;">
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-1.1deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-01.jpg" alt="New-build farmhouse exterior with standing-seam metal roof — Bucks County, PA" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">01</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">WHOLE-HOME REBUILD</span>
+          </figcaption>
+        </figure>
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(0.9deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-02.jpg" alt="Custom white-oak kitchen with Wolf range and quartzite counters" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">02</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">CUSTOM KITCHEN</span>
+          </figcaption>
+        </figure>
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-0.7deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-03.jpg" alt="Primary bath with marble slab walls, freestanding tub, and brass fixtures" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">03</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">PRIMARY BATH</span>
+          </figcaption>
+        </figure>
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(1.1deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-04.jpg" alt="Arched wet-bar built-in with fluted oak cabinetry and quartzite backsplash" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">04</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">WET BAR BUILT-INS</span>
+          </figcaption>
+        </figure>
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-0.9deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-05.jpg" alt="Great room with stacked-stone fireplace and arched built-ins, mid-build" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">05</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">GREAT ROOM &mdash; IN PROGRESS</span>
+          </figcaption>
+        </figure>
+        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(0.8deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
+          <div style="width:100%; aspect-ratio:4/3; position:relative;">
+            <img src="assets/field-06.jpg" alt="Outdoor pavilion and stone bar under construction" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">06</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">OUTDOOR PAVILION &mdash; IN PROGRESS</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div data-mq="field-bar" style="height:2px; background:#D8D0BE; border-radius:99px; overflow:hidden; margin:0 6px;">
+        <div ref="{{ fieldBarRef }}" style="height:100%; width:16%; background:#A9873F; border-radius:99px; transition:width .15s ease;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- STARTING POINTS -->
 <div id="ideas" data-screen-label="Starting points" style="background:#0F1D33; background-image:radial-gradient(ellipse 130% 90% at 50% -10%, #16305B 0%, #0F1D33 62%); padding:64px 48px 76px;">
   <div style="max-width:960px; margin:0 auto; display:flex; flex-direction:column; gap:44px;">
@@ -795,6 +884,16 @@
   <input type="text" name="bot-field">
 </form>
 
+<!-- Netlify Forms detection (build-time only, never visible) -->
+<form name="project-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden style="display:none;">
+  <input type="text" name="name">
+  <input type="text" name="contact">
+  <input type="text" name="project-type">
+  <input type="text" name="township">
+  <textarea name="message"></textarea>
+  <input type="text" name="bot-field">
+</form>
+
 <!-- FOOTER -->
 <div data-screen-label="Footer" style="background:#0B1628; padding:40px 48px 22px; border-top:1px solid rgba(247,244,238,.1);">
   <div style="max-width:1320px; margin:0 auto; display:flex; flex-direction:column; gap:22px;">
@@ -963,6 +1062,31 @@ class Component extends DCLogic {
     if (this._raf) cancelAnimationFrame(this._raf);
   }
 
+  _fieldGo(dir) {
+    const el = this._fieldStripRef && this._fieldStripRef.current;
+    if (!el) return;
+    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    const offs = Array.prototype.map.call(el.querySelectorAll('figure'), (f) => f.offsetLeft - pad);
+    if (!offs.length) return;
+    const max = el.scrollWidth - el.clientWidth;
+    let cur = 0;
+    for (let i = 0; i < offs.length; i++) if (Math.abs(offs[i] - el.scrollLeft) < Math.abs(offs[cur] - el.scrollLeft)) cur = i;
+    const idx = Math.max(0, Math.min(offs.length - 1, cur + dir * 2));
+    const target = Math.max(0, Math.min(offs[idx], max));
+    // mandatory-snap containers swallow smooth scrollTo (pending snap corrections cancel it);
+    // animate scrollLeft ourselves with snap disabled, restore snap on completion.
+    if (this._fieldAnim) cancelAnimationFrame(this._fieldAnim);
+    el.style.scrollSnapType = 'none';
+    const from = el.scrollLeft, dist = target - from, t0 = performance.now(), dur = 380;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      el.scrollLeft = from + dist * (1 - Math.pow(1 - p, 3));
+      if (p < 1) { this._fieldAnim = requestAnimationFrame(step); }
+      else { this._fieldAnim = null; el.style.scrollSnapType = 'x mandatory'; }
+    };
+    this._fieldAnim = requestAnimationFrame(step);
+  }
+
   renderVals() {
     const t = this.state.tab;
     const ideaList = [
@@ -1020,6 +1144,17 @@ class Component extends DCLogic {
       ideas: ideas,
       menuOpen: this.state.menuOpen,
 
+      fieldStripRef: this._fieldStripRef || (this._fieldStripRef = React.createRef()),
+      fieldBarRef: this._fieldBarRef || (this._fieldBarRef = React.createRef()),
+      fieldScroll: (e) => {
+        const el = e.currentTarget;
+        const max = el.scrollWidth - el.clientWidth;
+        const p = max > 0 ? el.scrollLeft / max : 0;
+        const bar = this._fieldBarRef && this._fieldBarRef.current;
+        if (bar) bar.style.width = (16 + p * 84).toFixed(1) + '%';
+      },
+      fieldPrev: () => this._fieldGo(-1),
+      fieldNext: () => this._fieldGo(1),
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
       notSent: !this.state.sent,
