@@ -134,6 +134,9 @@
     }
     [data-mq="field-strip"] { scrollbar-width: none; }
     [data-mq="field-strip"]::-webkit-scrollbar { display: none; }
+    #dormer-open:focus-visible,
+    #dormer-dialog button:focus-visible { outline: 2px solid #A9873F; outline-offset: 3px; }
+    #dormer-dialog button:disabled { opacity: .35; cursor: default; }
   </style>
 </helmet>
 
@@ -603,20 +606,13 @@
           </figcaption>
         </figure>
         <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-1.0deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
-          <div style="width:100%; aspect-ratio:4/3; position:relative;">
-            <img src="assets/field-07.jpg" alt="Completed three-bay garage with new shingled dormer and upper windows" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
+          <button type="button" id="dormer-open" onClick="{{ openDormer }}" aria-haspopup="dialog" aria-controls="dormer-dialog" aria-expanded="{{ dormerOpen }}" aria-label="Completed three-bay garage with new shingled dormer and upper windows. Opens prep day, framing, and completed photos." style="display:block; width:100%; margin:0; padding:0; border:0; background:transparent; cursor:pointer; font:inherit;">
+            <div style="width:100%; aspect-ratio:4/3; position:relative;">
+              <img src="assets/field-07.jpg" alt="Completed three-bay garage with new shingled dormer and upper windows" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+          </button>
           <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
             <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">07</span>
-            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">GARAGE DORMER &mdash; COMPLETED</span>
-          </figcaption>
-        </figure>
-        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(0.7deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
-          <div style="width:100%; aspect-ratio:4/3; position:relative;">
-            <img src="assets/field-08.jpg" alt="Completed garage dormer with new exterior wood stair and upper windows" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
-            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">08</span>
             <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">GARAGE DORMER &mdash; COMPLETED</span>
           </figcaption>
         </figure>
@@ -636,6 +632,37 @@
     </div>
   </div>
 </div>
+
+<sc-if value="{{ dormerOpen }}" hint-placeholder-val="{{ false }}">
+  <div id="dormer-dialog" role="dialog" aria-modal="true" aria-labelledby="dormer-caption" tabIndex="-1" onKeyDown="{{ dormerKey }}" onClick="{{ dormerBackdrop }}" style="position:fixed; inset:0; z-index:200; background:rgba(15,29,51,.86); display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box;">
+    <div onClick="{{ dormerStop }}" style="width:min(880px, 100%); background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 14px; box-shadow:0 22px 55px rgba(5,10,20,.45); display:flex; flex-direction:column; gap:12px;">
+      <div style="width:100%; aspect-ratio:4/3; position:relative; background:#EDE7DA;">
+        <sc-if value="{{ dormerIs0 }}" hint-placeholder-val="{{ false }}">
+          <img src="assets/field-07-prep.jpg" alt="Three-bay garage tarped and prepped before roof work" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+        </sc-if>
+        <sc-if value="{{ dormerIs1 }}" hint-placeholder-val="{{ false }}">
+          <img src="assets/field-08.jpg" alt="Garage roof opened up with new dormer framing going in" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+        </sc-if>
+        <sc-if value="{{ dormerIs2 }}" hint-placeholder-val="{{ true }}">
+          <img src="assets/field-07.jpg" alt="Completed three-bay garage with new shingled dormer and upper windows" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+        </sc-if>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:2px 3px 0;">
+        <div id="dormer-caption" aria-live="polite" style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">
+          <sc-if value="{{ dormerIs0 }}" hint-placeholder-val="{{ false }}">GARAGE DORMER &mdash; PREP DAY</sc-if>
+          <sc-if value="{{ dormerIs1 }}" hint-placeholder-val="{{ false }}">GARAGE DORMER &mdash; FRAMING</sc-if>
+          <sc-if value="{{ dormerIs2 }}" hint-placeholder-val="{{ true }}">GARAGE DORMER &mdash; COMPLETED</sc-if>
+        </div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F; flex-shrink:0;">{{ dormerPos }}</div>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button type="button" onClick="{{ dormerPrev }}" disabled="{{ dormerAtStart }}" aria-label="Previous photo" style="width:46px; height:46px; border-radius:999px; border:1px solid #C9BEA0; background:transparent; color:#0F1D33; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8592;</button>
+        <button type="button" onClick="{{ dormerNext }}" disabled="{{ dormerAtEnd }}" aria-label="Next photo" style="width:46px; height:46px; border-radius:999px; border:1px solid #C9BEA0; background:transparent; color:#0F1D33; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&#8594;</button>
+        <button type="button" onClick="{{ closeDormer }}" aria-label="Close gallery" style="height:46px; padding:0 16px; border-radius:999px; border:1px solid #C9BEA0; background:transparent; color:#0F1D33; font-family:'Archivo', sans-serif; font-size:11px; font-weight:700; letter-spacing:.14em; cursor:pointer;">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
 
 <!-- STARTING POINTS -->
 <div id="ideas" data-screen-label="Starting points" style="background:#0F1D33; background-image:radial-gradient(ellipse 130% 90% at 50% -10%, #16305B 0%, #0F1D33 62%); padding:64px 48px 76px;">
@@ -964,7 +991,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;(215) 500-6311&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Drawings&quot;},&quot;logoDock&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false };
+  state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false, dormerOpen: false, dormerIndex: 2 };
 
   componentDidMount() {
     this._measured = null;
@@ -1089,12 +1116,27 @@ class Component extends DCLogic {
     }, 60);
   }
 
+  componentDidUpdate() {
+    const open = !!this.state.dormerOpen;
+    if (open && !this._dormerWasOpen) {
+      const dlg = document.getElementById('dormer-dialog');
+      if (dlg) dlg.focus();
+      document.documentElement.style.overflow = 'hidden';
+    } else if (!open && this._dormerWasOpen) {
+      document.documentElement.style.overflow = '';
+      const t = document.getElementById('dormer-open');
+      if (t) t.focus();
+    }
+    this._dormerWasOpen = open;
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this._onScroll);
     document.removeEventListener('click', this._onDocClick);
     window.removeEventListener('resize', this._onResize);
     if (this._io) this._io.disconnect();
     if (this._raf) cancelAnimationFrame(this._raf);
+    document.documentElement.style.overflow = '';
   }
 
   _fieldGo(dir) {
@@ -1120,6 +1162,18 @@ class Component extends DCLogic {
       else { this._fieldAnim = null; el.style.scrollSnapType = 'x mandatory'; }
     };
     this._fieldAnim = requestAnimationFrame(step);
+  }
+
+  _dormerStep(dir) {
+    const n = Math.max(0, Math.min(2, this.state.dormerIndex + dir));
+    if (n === this.state.dormerIndex) return;
+    this.setState({ dormerIndex: n }, () => {
+      const el = document.activeElement;
+      if (el && el.disabled) {
+        const dlg = document.getElementById('dormer-dialog');
+        if (dlg) dlg.focus();
+      }
+    });
   }
 
   renderVals() {
@@ -1190,6 +1244,33 @@ class Component extends DCLogic {
       },
       fieldPrev: () => this._fieldGo(-1),
       fieldNext: () => this._fieldGo(1),
+      dormerOpen: this.state.dormerOpen,
+      dormerIs0: this.state.dormerIndex === 0,
+      dormerIs1: this.state.dormerIndex === 1,
+      dormerIs2: this.state.dormerIndex === 2,
+      dormerAtStart: this.state.dormerIndex <= 0,
+      dormerAtEnd: this.state.dormerIndex >= 2,
+      dormerPos: (this.state.dormerIndex + 1) + ' OF 3',
+      openDormer: () => this.setState({ dormerOpen: true, dormerIndex: 2 }),
+      closeDormer: () => this.setState({ dormerOpen: false }),
+      dormerPrev: () => this._dormerStep(-1),
+      dormerNext: () => this._dormerStep(1),
+      dormerBackdrop: (e) => { if (e.target === e.currentTarget) this.setState({ dormerOpen: false }); },
+      dormerStop: (e) => e.stopPropagation(),
+      dormerKey: (e) => {
+        if (!this.state.dormerOpen) return;
+        if (e.key === 'Escape') { e.preventDefault(); this.setState({ dormerOpen: false }); return; }
+        if (e.key === 'ArrowRight') { e.preventDefault(); this._dormerStep(1); return; }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this._dormerStep(-1); return; }
+        if (e.key !== 'Tab') return;
+        const root = document.getElementById('dormer-dialog');
+        if (!root) return;
+        const list = Array.prototype.filter.call(root.querySelectorAll('button'), (n) => !n.disabled);
+        if (!list.length) { e.preventDefault(); return; }
+        const first = list[0], last = list[list.length - 1], active = document.activeElement;
+        if (e.shiftKey && (active === first || active === root)) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (active === last || active === root)) { e.preventDefault(); first.focus(); }
+      },
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
       notSent: !this.state.sent,
