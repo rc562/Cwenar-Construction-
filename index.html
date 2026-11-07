@@ -135,6 +135,7 @@
     [data-mq="field-strip"] { scrollbar-width: none; }
     [data-mq="field-strip"]::-webkit-scrollbar { display: none; }
     #dormer-open:focus-visible,
+    #pavilion-open:focus-visible,
     #dormer-dialog button:focus-visible { outline: 2px solid #A9873F; outline-offset: 3px; }
     #dormer-dialog button:disabled { opacity: .35; cursor: default; }
   </style>
@@ -597,16 +598,18 @@
           </figcaption>
         </figure>
         <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(0.8deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
-          <div style="width:100%; aspect-ratio:4/3; position:relative;">
-            <img src="assets/field-06.jpg" alt="Outdoor pavilion and stone bar under construction" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
+          <button type="button" id="pavilion-open" onClick="{{ openPavilion }}" aria-haspopup="dialog" aria-controls="dormer-dialog" aria-expanded="{{ pavilionExpanded }}" aria-label="Finished outdoor pavilion with metal roof, cupola, and dining table beside the stone house. Opens the build from in progress through completed." style="display:block; width:100%; margin:0; padding:0; border:0; background:transparent; cursor:pointer; font:inherit;">
+            <div style="width:100%; aspect-ratio:4/3; position:relative;">
+              <img src="assets/field-11.jpg" alt="Finished outdoor pavilion with metal roof, cupola, and dining table beside the stone house" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+          </button>
           <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
             <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">06</span>
-            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">OUTDOOR PAVILION &mdash; IN PROGRESS</span>
+            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">OUTDOOR PAVILION &mdash; COMPLETED</span>
           </figcaption>
         </figure>
         <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-1.0deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
-          <button type="button" id="dormer-open" onClick="{{ openDormer }}" aria-haspopup="dialog" aria-controls="dormer-dialog" aria-expanded="{{ dormerOpen }}" aria-label="Completed three-bay garage with new shingled dormer and upper windows. Opens prep day, framing, and completed photos." style="display:block; width:100%; margin:0; padding:0; border:0; background:transparent; cursor:pointer; font:inherit;">
+          <button type="button" id="dormer-open" onClick="{{ openDormer }}" aria-haspopup="dialog" aria-controls="dormer-dialog" aria-expanded="{{ dormerExpanded }}" aria-label="Completed three-bay garage with new shingled dormer and upper windows. Opens prep day, framing, and completed photos." style="display:block; width:100%; margin:0; padding:0; border:0; background:transparent; cursor:pointer; font:inherit;">
             <div style="width:100%; aspect-ratio:4/3; position:relative;">
               <img src="assets/field-07.jpg" alt="Completed three-bay garage with new shingled dormer and upper windows" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
             </div>
@@ -614,15 +617,6 @@
           <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
             <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">07</span>
             <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">GARAGE DORMER &mdash; COMPLETED</span>
-          </figcaption>
-        </figure>
-        <figure style="flex:0 0 auto; width:270px; margin:0; scroll-snap-align:start; background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 11px; box-shadow:0 12px 26px rgba(15,29,51,.10); transform:rotate(-0.8deg); transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:rotate(0deg) translateY(-6px); box-shadow:0 20px 38px rgba(15,29,51,.16);">
-          <div style="width:100%; aspect-ratio:4/3; position:relative;">
-            <img src="assets/field-09.jpg" alt="Pavilion wrapped and papered, copper cupola staged on the patio" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <figcaption style="display:flex; align-items:baseline; gap:10px; padding:10px 3px 2px;">
-            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F;">09</span>
-            <span style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">OUTDOOR PAVILION &mdash; NEARLY DONE</span>
           </figcaption>
         </figure>
       </div>
@@ -636,23 +630,18 @@
 <sc-if value="{{ dormerOpen }}" hint-placeholder-val="{{ false }}">
   <div id="dormer-dialog" role="dialog" aria-modal="true" aria-labelledby="dormer-caption" tabIndex="-1" onKeyDown="{{ dormerKey }}" onClick="{{ dormerBackdrop }}" style="position:fixed; inset:0; z-index:200; background:rgba(15,29,51,.86); display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box;">
     <div onClick="{{ dormerStop }}" style="width:min(880px, 100%); background:#FDFCF9; border:1px solid #E0D8C6; border-radius:2px; padding:9px 9px 14px; box-shadow:0 22px 55px rgba(5,10,20,.45); display:flex; flex-direction:column; gap:12px;">
-      <div style="width:100%; aspect-ratio:4/3; position:relative; background:#EDE7DA;">
-        <sc-if value="{{ dormerIs0 }}" hint-placeholder-val="{{ false }}">
-          <img src="assets/field-07-prep.jpg" alt="Three-bay garage tarped and prepped before roof work" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-        </sc-if>
-        <sc-if value="{{ dormerIs1 }}" hint-placeholder-val="{{ false }}">
-          <img src="assets/field-08.jpg" alt="Garage roof opened up with new dormer framing going in" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-        </sc-if>
-        <sc-if value="{{ dormerIs2 }}" hint-placeholder-val="{{ true }}">
-          <img src="assets/field-07.jpg" alt="Completed three-bay garage with new shingled dormer and upper windows" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
-        </sc-if>
-      </div>
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:2px 3px 0;">
-        <div id="dormer-caption" aria-live="polite" style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">
-          <sc-if value="{{ dormerIs0 }}" hint-placeholder-val="{{ false }}">GARAGE DORMER &mdash; PREP DAY</sc-if>
-          <sc-if value="{{ dormerIs1 }}" hint-placeholder-val="{{ false }}">GARAGE DORMER &mdash; FRAMING</sc-if>
-          <sc-if value="{{ dormerIs2 }}" hint-placeholder-val="{{ true }}">GARAGE DORMER &mdash; COMPLETED</sc-if>
+      <sc-if value="{{ shotPortrait }}" hint-placeholder-val="{{ false }}">
+        <div style="width:100%; display:flex; align-items:center; justify-content:center; background:#EDE7DA;">
+          <img src="{{ shotSrc }}" alt="{{ shotAlt }}" style="max-width:100%; max-height:70vh; width:auto; height:auto; object-fit:contain; display:block;">
         </div>
+      </sc-if>
+      <sc-if value="{{ shotWide }}" hint-placeholder-val="{{ true }}">
+        <div style="width:100%; aspect-ratio:4/3; position:relative; background:#EDE7DA;">
+          <img src="{{ shotSrc }}" alt="{{ shotAlt }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </sc-if>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:2px 3px 0;">
+        <div id="dormer-caption" aria-live="polite" style="font-size:10.5px; font-weight:600; letter-spacing:.14em; color:#6B6350;">{{ shotCaption }}</div>
         <div style="font-size:10px; font-weight:700; letter-spacing:.18em; color:#A9873F; flex-shrink:0;">{{ dormerPos }}</div>
       </div>
       <div style="display:flex; justify-content:flex-end; gap:10px;">
@@ -991,7 +980,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;(215) 500-6311&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showAnnotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Drawings&quot;},&quot;logoDock&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false, dormerOpen: false, dormerIndex: 2 };
+  state = { tab: 1, openIdea: -1, menuOpen: false, sent: false, err: false, sentName: '', emailCopied: false, dormerOpen: false, dormerIndex: 2, shotSet: 'dormer' };
 
   componentDidMount() {
     this._measured = null;
@@ -1124,7 +1113,7 @@ class Component extends DCLogic {
       document.documentElement.style.overflow = 'hidden';
     } else if (!open && this._dormerWasOpen) {
       document.documentElement.style.overflow = '';
-      const t = document.getElementById('dormer-open');
+      const t = document.getElementById(this._shotTrigger || 'dormer-open');
       if (t) t.focus();
     }
     this._dormerWasOpen = open;
@@ -1164,8 +1153,24 @@ class Component extends DCLogic {
     this._fieldAnim = requestAnimationFrame(step);
   }
 
+  _shotList() {
+    const dormer = [
+      { src: 'assets/field-07-prep.jpg', alt: 'Three-bay garage tarped and prepped before roof work', caption: 'GARAGE DORMER \u2014 PREP DAY', portrait: false },
+      { src: 'assets/field-08.jpg', alt: 'Garage roof opened up with new dormer framing going in', caption: 'GARAGE DORMER \u2014 FRAMING', portrait: false },
+      { src: 'assets/field-07.jpg', alt: 'Completed three-bay garage with new shingled dormer and upper windows', caption: 'GARAGE DORMER \u2014 COMPLETED', portrait: false }
+    ];
+    const pavilion = [
+      { src: 'assets/field-06.jpg', alt: 'Outdoor pavilion and stone bar under construction', caption: 'OUTDOOR PAVILION \u2014 IN PROGRESS', portrait: false },
+      { src: 'assets/field-09.jpg', alt: 'Pavilion wrapped and papered, copper cupola staged on the patio', caption: 'OUTDOOR PAVILION \u2014 NEARLY DONE', portrait: false },
+      { src: 'assets/field-10.jpg', alt: 'Finished outdoor pavilion from the lawn, with cupola, metal roof, and stone base', caption: 'OUTDOOR PAVILION \u2014 FROM THE YARD', portrait: true },
+      { src: 'assets/field-11.jpg', alt: 'Finished outdoor pavilion with metal roof, cupola, and dining table beside the stone house', caption: 'OUTDOOR PAVILION \u2014 COMPLETED', portrait: true }
+    ];
+    return this.state.shotSet === 'pavilion' ? pavilion : dormer;
+  }
+
   _dormerStep(dir) {
-    const n = Math.max(0, Math.min(2, this.state.dormerIndex + dir));
+    const last = this._shotList().length - 1;
+    const n = Math.max(0, Math.min(last, this.state.dormerIndex + dir));
     if (n === this.state.dormerIndex) return;
     this.setState({ dormerIndex: n }, () => {
       const el = document.activeElement;
@@ -1245,13 +1250,18 @@ class Component extends DCLogic {
       fieldPrev: () => this._fieldGo(-1),
       fieldNext: () => this._fieldGo(1),
       dormerOpen: this.state.dormerOpen,
-      dormerIs0: this.state.dormerIndex === 0,
-      dormerIs1: this.state.dormerIndex === 1,
-      dormerIs2: this.state.dormerIndex === 2,
+      dormerExpanded: this.state.dormerOpen && this.state.shotSet === 'dormer',
+      pavilionExpanded: this.state.dormerOpen && this.state.shotSet === 'pavilion',
       dormerAtStart: this.state.dormerIndex <= 0,
-      dormerAtEnd: this.state.dormerIndex >= 2,
-      dormerPos: (this.state.dormerIndex + 1) + ' OF 3',
-      openDormer: () => this.setState({ dormerOpen: true, dormerIndex: 2 }),
+      dormerAtEnd: this.state.dormerIndex >= this._shotList().length - 1,
+      dormerPos: (this.state.dormerIndex + 1) + ' OF ' + this._shotList().length,
+      shotSrc: (this._shotList()[this.state.dormerIndex] || this._shotList()[0]).src,
+      shotAlt: (this._shotList()[this.state.dormerIndex] || this._shotList()[0]).alt,
+      shotCaption: (this._shotList()[this.state.dormerIndex] || this._shotList()[0]).caption,
+      shotPortrait: !!(this._shotList()[this.state.dormerIndex] || this._shotList()[0]).portrait,
+      shotWide: !(this._shotList()[this.state.dormerIndex] || this._shotList()[0]).portrait,
+      openDormer: () => { this._shotTrigger = 'dormer-open'; this.setState({ dormerOpen: true, dormerIndex: 2, shotSet: 'dormer' }); },
+      openPavilion: () => { this._shotTrigger = 'pavilion-open'; this.setState({ dormerOpen: true, dormerIndex: 3, shotSet: 'pavilion' }); },
       closeDormer: () => this.setState({ dormerOpen: false }),
       dormerPrev: () => this._dormerStep(-1),
       dormerNext: () => this._dormerStep(1),
